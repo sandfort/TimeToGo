@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventInfo" 
+	android:orientation="vertical" >
+    
+    <EditText
+        android:id="@+id/event_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_event_name" 
+		android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/event_notes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_event_notes" 
+        android:inputType="textMultiLine|textCapSentences" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_button" 
+        android:onClick="createEvent" />
+    
+</LinearLayout>

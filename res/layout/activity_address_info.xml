@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddressInfo" >
+
+    <EditText
+        android:id="@+id/address_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_address_name" 
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/address_location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_address_location" 
+        android:inputType="textPostalAddress|textCapWords">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/address_notes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_address_notes" 
+        android:inputType="textMultiLine|textCapSentences"/>
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="createAddress"
+        android:text="@string/create_button" />
+
+
+
+</LinearLayout>
+    

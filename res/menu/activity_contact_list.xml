@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/create_contact_button"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/create_contact_button"/>
+
+</menu>

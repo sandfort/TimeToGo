@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ContactInfo" >
+
+    <EditText
+        android:id="@+id/contact_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_contact_name" 
+        android:inputType="textPersonName|textCapWords"/>
+
+    <EditText
+        android:id="@+id/contact_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_contact_email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/contact_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_contact_phone_number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/contact_notes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_contact_notes" 
+        android:inputType="textMultiLine|textCapSentences">
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="createContact"
+        android:text="@string/create_button" />
+
+</LinearLayout>
