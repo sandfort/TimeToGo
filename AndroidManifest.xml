@@ -50,6 +50,10 @@
             android:name="com.example.fragmentpractice.ContactInfo"
             android:label="@string/title_activity_contact_info" >
         </activity>
+        <activity
+            android:name="com.example.fragmentpractice.AlarmReceiver"
+            android:label="@string/title_activity_alarm_receiver" >
+        </activity>
     </application>
 
 </manifest>

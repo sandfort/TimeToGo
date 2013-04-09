@@ -9,12 +9,29 @@ import android.widget.EditText;
 
 public class AddressInfo extends Activity {
  
+	private String action = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// display screen to enter address info
 		setContentView(R.layout.activity_address_info);
+		Intent intent = getIntent();
+		action = intent.getStringExtra("Action");
+		if(!action.equalsIgnoreCase("Create")){
+			
+			Address address = AddressBook.getAddress(action);
+			String addressNotes = address.getNotes();
+			String addressLocation = address.getLocation();
+			
+			EditText addressNameEdit = (EditText) findViewById(R.id.address_name);
+			EditText addressNotesEdit = (EditText) findViewById(R.id.address_notes);
+			EditText addressLocationEdit = (EditText) findViewById(R.id.address_location);
+			
+			addressNameEdit.setText(action);
+			addressNotesEdit.setText(addressNotes);
+			addressLocationEdit.setText(addressLocation);
+		}
 	}
 
 	@Override
@@ -36,8 +53,16 @@ public class AddressInfo extends Activity {
 		
 		// make a database connection and add address to it
 		AddressDbHelper db = new AddressDbHelper(this);
-		db.addAddress(address);
 		
+		if(action.equalsIgnoreCase("Create")) {
+			db.addAddress(address);
+			//db.addAddress(new Address("Hell", null, null));
+		} else {
+			//needs to be fixed
+			db.deleteAddress(address);
+			//db.addAddress(new Address("He'll", null, null));
+			//db.addAddress(address);
+		}
 		// on clicking "Create"
 		// control is transfered back to the address book
 		Intent intent = new Intent(this, AddressBook.class);

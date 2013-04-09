@@ -11,28 +11,19 @@
     <string name="address_book">This is the Address Book</string>
     <string name="contact_list_button">Contact List</string>
     <string name="contact_list">This is the Contact List</string>
-    
-    
     <string name="create_event_button">Create Event</string>
     <string name="create_address_button">Add Address</string>
     <string name="create_contact_button">Create Contact</string>
-    
-    
     <string name="enter_event_name">Enter Event Name</string>
     <string name="enter_event_notes">Enter Event Notes</string>
-    
     <string name="enter_address_name">Enter Address Name</string>
     <string name="enter_address_notes">Enter Address Notes</string>
     <string name="enter_address_location">Enter Location</string>
-    
     <string name="enter_contact_name">Enter Contact Name</string>
-	<string name="enter_contact_email">Enter Contact Email</string>
+    <string name="enter_contact_email">Enter Contact Email</string>
     <string name="enter_contact_notes">Enter Contact Notes</string>
     <string name="enter_contact_phone_number">Enter Contact Phone Number</string>
-        
     <string name="create_button">Create</string>
-    
-    
     <string name="menu_settings">Settings</string>
     <string name="title_activity_address_book">AddressBook</string>
     <string name="title_activity_contact_list">ContactList</string>
@@ -40,8 +31,19 @@
     <string name="title_activity_event_info">EventInfo</string>
     <string name="title_activity_address_info">AddressInfo</string>
     <string name="title_activity_contact_info">ContactInfo</string>
+    <string name="save_events_button">Save Events</string>
+    <string name="stop_alarm_button">Stop Alarm</string>
+    <string name="create_alarm_button">Create Alarm</string>
+    <string name="enter_event_date">Enter Event Date (month#/day#)</string>
+    <string name="enter_event_time">Enter Event Time (hour:minutes)</string>
+    <string name="enter_event_address">Enter Event Address</string>
+    <string name="event_address_button">From List</string>
     
-    	
-	<string name="save_events_button">Save Events</string>
+    <string name="clear_address_database">Clear Addresses</string>
+    <string name="clear_contacts_database">Clear Contacts</string>
+    <string name="clear_events_database">Clear Events</string>
     
+    
+    <string name="title_activity_alarm_receiver">AlarmReceiver</string>
+
 </resources>

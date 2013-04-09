@@ -4,29 +4,63 @@
     android:layout_height="match_parent"
     tools:context=".EventInfo" 
 	android:orientation="vertical" >
-    
+
     <EditText
         android:id="@+id/event_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_event_name" 
-		android:inputType="textCapWords" />
+        android:ems="10"
+        android:hint="@string/enter_event_name"
+        android:inputType="textCapWords" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/event_notes"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_event_notes" 
-        android:inputType="textMultiLine|textCapSentences" >
+        android:ems="10"
+        android:hint="@string/enter_event_notes"
+        android:inputType="textMultiLine|textCapSentences" />
 
-        <requestFocus />
-    </EditText>
-
+	<EditText
+        android:id="@+id/event_time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_event_time"
+        android:inputType="time" />
+    
+    <EditText
+        android:id="@+id/event_date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_event_date"
+        android:inputType="date" />
+    
+    <EditText
+        android:id="@+id/event_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_event_address"
+        android:inputType="textPostalAddress" />
+    
+    <Button
+        android:id="@+id/event_address_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="selectAddress"
+        android:text="@string/event_address_button" />
+    
+    
     <Button
         android:id="@+id/create"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_button" 
-        android:onClick="createEvent" />
+        android:onClick="createEvent"
+        android:text="@string/create_button" />
     
 </LinearLayout>

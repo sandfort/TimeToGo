@@ -105,5 +105,9 @@ public class AddressDbHelper extends SQLiteOpenHelper {
 	    db.close();
 	}
 	
+	public String getName() {
+		return DATABASE_NAME;
+	}
+	
 
 }
