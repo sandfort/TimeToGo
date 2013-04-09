@@ -48,36 +48,5 @@ public class Address {
 		this.location = location;
 	}	
 	
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(name);
-//        dest.writeString(notes);
-//        dest.writeString(location);
-//    }
-//   
-//    public static final Parcelable.Creator<Address> CREATOR = new Parcelable.Creator<Address>() {
-//    	public Address createFromParcel(Parcel in) {
-//    		return new Address(in);
-//    	}
-//
-//    	public Address[] newArray(int size) {
-//    		return new Address[size];
-//    	}
-//    };
-//
-//    public Address(Parcel in) {
-//    	name = in.readString();
-//    	notes = in.readString();
-//    	location = in.readString();
-//    }
-//
-//    
-//    
-//
-//	@Override
-//	public int describeContents() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 	
 }
