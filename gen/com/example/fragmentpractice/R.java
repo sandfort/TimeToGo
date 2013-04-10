@@ -37,6 +37,7 @@ public final class R {
         public static final int create_alarm_button=0x7f090019;
         public static final int create_contact_button=0x7f090016;
         public static final int create_event_button=0x7f090017;
+        public static final int create_text_button=0x7f09001a;
         public static final int event_address=0x7f09000d;
         public static final int event_address_button=0x7f09000e;
         public static final int event_date=0x7f09000c;
@@ -56,7 +57,9 @@ public final class R {
         public static final int activity_event_info=0x7f030005;
         public static final int activity_event_manager=0x7f030006;
         public static final int activity_main=0x7f030007;
-        public static final int list_layout=0x7f030008;
+        public static final int activity_quick_texts_manager=0x7f030008;
+        public static final int activity_user_prefs=0x7f030009;
+        public static final int list_layout=0x7f03000a;
     }
     public static final class menu {
         public static final int activity_address_book=0x7f080000;
@@ -67,6 +70,7 @@ public final class R {
         public static final int activity_event_info=0x7f080005;
         public static final int activity_event_manager=0x7f080006;
         public static final int activity_main=0x7f080007;
+        public static final int activity_quick_texts_manager=0x7f080008;
     }
     public static final class string {
         public static final int address_book=0x7f050007;
@@ -82,6 +86,7 @@ public final class R {
         public static final int create_button=0x7f050016;
         public static final int create_contact_button=0x7f05000c;
         public static final int create_event_button=0x7f05000a;
+        public static final int create_text_button=0x7f050029;
         public static final int enter_address_location=0x7f050011;
         public static final int enter_address_name=0x7f05000f;
         public static final int enter_address_notes=0x7f050010;
@@ -99,27 +104,27 @@ public final class R {
         public static final int event_manager_button=0x7f050002;
         public static final int hello_world=0x7f050001;
         public static final int menu_settings=0x7f050017;
-        public static final int pref_default_display_name=0x7f05002e;
-        public static final int pref_description_social_recommendations=0x7f05002c;
+        public static final int pref_default_display_name=0x7f05002f;
+        public static final int pref_description_social_recommendations=0x7f05002d;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f050030;
+        public static final int pref_header_data_sync=0x7f050031;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f05002a;
+        public static final int pref_header_general=0x7f05002b;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f050033;
-        public static final int pref_ringtone_silent=0x7f050036;
-        public static final int pref_title_add_friends_to_messages=0x7f05002f;
-        public static final int pref_title_display_name=0x7f05002d;
-        public static final int pref_title_new_message_notifications=0x7f050034;
-        public static final int pref_title_ringtone=0x7f050035;
-        public static final int pref_title_social_recommendations=0x7f05002b;
-        public static final int pref_title_sync_frequency=0x7f050031;
-        public static final int pref_title_system_sync_settings=0x7f050032;
-        public static final int pref_title_vibrate=0x7f050037;
+        public static final int pref_header_notifications=0x7f050034;
+        public static final int pref_ringtone_silent=0x7f050037;
+        public static final int pref_title_add_friends_to_messages=0x7f050030;
+        public static final int pref_title_display_name=0x7f05002e;
+        public static final int pref_title_new_message_notifications=0x7f050035;
+        public static final int pref_title_ringtone=0x7f050036;
+        public static final int pref_title_social_recommendations=0x7f05002c;
+        public static final int pref_title_sync_frequency=0x7f050032;
+        public static final int pref_title_system_sync_settings=0x7f050033;
+        public static final int pref_title_vibrate=0x7f050038;
         public static final int save_events_button=0x7f05001e;
         public static final int stop_alarm_button=0x7f05001f;
         public static final int title_activity_address_book=0x7f050018;
@@ -129,7 +134,7 @@ public final class R {
         public static final int title_activity_contact_list=0x7f050019;
         public static final int title_activity_event_info=0x7f05001b;
         public static final int title_activity_event_manager=0x7f05001a;
-        public static final int title_activity_user_prefs=0x7f050029;
+        public static final int title_activity_user_prefs=0x7f05002a;
         public static final int user_prefs=0x7f050005;
         public static final int user_prefs_button=0x7f050004;
     }

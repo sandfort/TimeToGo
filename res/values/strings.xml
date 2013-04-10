@@ -45,5 +45,7 @@
     
     
     <string name="title_activity_alarm_receiver">AlarmReceiver</string>
+    
+    <string name="create_text_button">New Text</string>
 
 </resources>
