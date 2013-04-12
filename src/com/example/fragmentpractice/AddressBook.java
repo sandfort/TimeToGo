@@ -139,5 +139,13 @@ public class AddressBook extends ListActivity {
 	public void addAddress(Address address) {
 		addresses.add(address);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		return;
+	}
+
 
 }

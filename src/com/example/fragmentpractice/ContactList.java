@@ -70,4 +70,12 @@ public class ContactList extends ListActivity {
 		contacts.add(contact);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		return;
+	}
+
+	
 }

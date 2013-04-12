@@ -108,6 +108,13 @@ public class EventManager extends ListActivity {
 		return null;
 	}
 	
+	@Override
+	public void onBackPressed() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		return;
+	}
+
 	
 
 }

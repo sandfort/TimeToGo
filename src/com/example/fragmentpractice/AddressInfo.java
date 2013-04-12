@@ -69,4 +69,6 @@ public class AddressInfo extends Activity {
 		startActivity(intent);
 	}
 	
+
+
 }
