@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnRoute" 
+	android:orientation="vertical" >
+
+    <DigitalClock
+        android:id="@+id/digitalClock1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.50"
+        android:gravity="center_horizontal"
+        android:text="@string/digital_clock" />
+
+    <TextView
+        android:id="@+id/en_route_event_time"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:textIsSelectable="true"  >
+
+        <requestFocus />
+    </TextView>
+
+    <Button
+        android:id="@+id/time_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="timeMe"
+        android:text="@string/time_me" />
+
+    <Button
+        android:id="@+id/i_am_here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="iAmHere"
+        android:text="@string/i_am_here" />
+
+</LinearLayout>
