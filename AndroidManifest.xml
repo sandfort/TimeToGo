@@ -54,6 +54,10 @@
             android:name="com.example.fragmentpractice.AlarmReceiver"
             android:label="@string/title_activity_alarm_receiver" >
         </activity>
+        <activity
+            android:name="com.example.fragmentpractice.EnRoute"
+            android:label="@string/title_activity_en_route" >
+        </activity>
     </application>
 
 </manifest>

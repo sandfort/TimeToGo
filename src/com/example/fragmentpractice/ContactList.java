@@ -49,8 +49,22 @@ public class ContactList extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// on clicking "Create Contact"
 		// control is transfered to screen to enter contact info
-		Intent intent = new Intent(this, ContactInfo.class);
-		startActivity(intent);
+		int choice = item.getItemId();
+		if (choice == R.id.create_contact_button) {
+			Intent intent = new Intent(this, ContactInfo.class);
+			intent.putExtra("Action", "Create");
+			startActivity(intent);
+		//	return true;
+		} else if (choice == R.id.clear_contacts_database){
+			ContactDbHelper db = new ContactDbHelper(this);
+			this.deleteDatabase(db.getName());
+			contacts = db.getAllContacts();
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+		//	return true;
+		}		
+		
+		
     	return true;
 	}
 	

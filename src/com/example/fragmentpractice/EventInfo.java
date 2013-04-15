@@ -108,4 +108,36 @@ public class EventInfo extends Activity {
 		startActivity(intent);
 	}
 	
+	public void startTrip(View view) {
+		//get data from text boxes
+		EditText eventName = (EditText) findViewById(R.id.event_name);
+		EditText eventNotes = (EditText) findViewById(R.id.event_notes);
+		EditText eventTime = (EditText) findViewById(R.id.event_time);
+		EditText eventDate = (EditText) findViewById(R.id.event_date);
+		EditText eventAddress = (EditText) findViewById(R.id.event_address);
+		
+		Event event = new Event(eventName.getText().toString(), eventNotes.getText().toString(), 
+				eventTime.getText().toString(), eventDate.getText().toString(), 
+				AddressBook.getAddress(eventAddress.getText().toString()), null);
+	
+		// make a database connection and add address to it
+		EventDbHelper db = new EventDbHelper(this);
+		
+		if(action.equalsIgnoreCase("Create")) {
+			db.addEvent(event);
+			//db.addEvent(new Address("Hell", null, null));
+		} else {
+			//needs to be fixed
+			db.deleteEvent(event);
+			//db.addAddress(new Address("He'll", null, null));
+			//db.addAddress(address);
+		}
+		
+		Intent intent = new Intent(this, EnRoute.class);
+		intent.putExtra("Event Time", eventTime.getText().toString());
+		startActivity(intent);
+		
+		
+	}
+	
 }

@@ -85,7 +85,7 @@ public class AddressBook extends ListActivity {
 	    	intent.putExtra("Action", "Create");
 			startActivity(intent);
 		//	return true;
-		} else if (choice == R.id.clear_address_database){
+		} else if (choice == R.id.clear_addresses_database){
 			AddressDbHelper db = new AddressDbHelper(this);
 			//for(int i = 0; i < addresses.size(); ++i) {
 			//	db.deleteAddress(addresses.get(0));

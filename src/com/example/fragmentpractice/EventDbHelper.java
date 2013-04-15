@@ -120,4 +120,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	}
 	
 
+	public String getName() {
+		return DATABASE_NAME;
+	}
+	
+	
 }

@@ -38,14 +38,19 @@
     <string name="enter_event_time">Enter Event Time (hour:minutes)</string>
     <string name="enter_event_address">Enter Event Address</string>
     <string name="event_address_button">From List</string>
-    
-    <string name="clear_address_database">Clear Addresses</string>
+    <string name="start_trip_button">Start Trip</string>
+    <string name="clear_addresses_database">Clear Addresses</string>
     <string name="clear_contacts_database">Clear Contacts</string>
     <string name="clear_events_database">Clear Events</string>
-    
-    
     <string name="title_activity_alarm_receiver">AlarmReceiver</string>
-    
     <string name="create_text_button">New Text</string>
+    <string name="title_activity_en_route">EnRoute</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="digital_clock">DigitalClock</string>
+
+    <string name="time_me">Time Me</string>
+    <string name="i_am_here">I\'m Here</string>
+    
 
 </resources>

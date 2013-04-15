@@ -83,8 +83,12 @@ public class EventManager extends ListActivity {
 			intent.putExtra("Action", "Create");
 			startActivity(intent);
 		//	return true;
-		} else if (choice == R.id.save_events_button){
-			//save data
+		} else if (choice == R.id.clear_events_database){
+			EventDbHelper db = new EventDbHelper(this);
+			this.deleteDatabase(db.getName());
+			events = db.getAllEvents();
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
 		//	return true;
 		}
 		return true;
