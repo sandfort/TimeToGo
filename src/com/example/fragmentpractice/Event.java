@@ -14,6 +14,7 @@ public class Event {
 	private Alarm alarm;
 	
 	public Event(String name, String notes, String time, String date, Address address, ArrayList<Contact> contacts) {
+		this._id = EventManager.getNextEventID();
 		this.name = name;
 		this.notes = notes;
 		this.time = time;
@@ -65,7 +66,7 @@ public class Event {
 	public String getAddressName() {
 		if(address != null) 
 			return address.getName();
-		return "Bogus Address";
+		return "None";
 	}
 	
 	public String getContactsString() {
@@ -73,14 +74,14 @@ public class Event {
 			String output = "";
 			for (int i = 0; i < contacts.size(); ++i) {
 				if (i == contacts.size() - 1) {
-					output = output + contacts.get(i);
+					output = output + contacts.get(i).getName();
 				} else {
-					output = output + contacts.get(i) + ";";
+					output = output + contacts.get(i).getName().trim() + "; ";
 				}
 			}
 			return output;
 		}
-		return "Bogus Contacts";
+		return "None";
 	}
 	
 	public int getID() {
@@ -112,6 +113,9 @@ public class Event {
 	}
 	
 	public void addContact(Contact contact) {
+		if(contacts == null) {
+			contacts = new ArrayList<Contact>();
+		}
 		contacts.add(contact);
 	}
 	

@@ -13,13 +13,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddressBook extends ListActivity {
 
 	private static ArrayList<Address> addresses = new ArrayList<Address>();
 	private static AddressBook addressBook = new AddressBook();
-	public static int count = 0;
-	public static int nextId = 0;
+	//public static int count = 0;
+	public static int nextAddressID = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class AddressBook extends ListActivity {
 		AddressDbHelper db = new AddressDbHelper(this);
 		//get all addresses from address database
 		addresses = db.getAllAdresses();
+		db.close();		
 		//displays addresses or says that no addresses exist
 		if (addresses == null) {
 			String[] addressStrings = new String[] { "No Addresses"};
@@ -42,22 +44,57 @@ public class AddressBook extends ListActivity {
 			}
 			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout,	addressStrings));
 		
-			ListView addressBook = (ListView) findViewById(android.R.id.list);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_layout,	addressStrings);
-			addressBook.setAdapter(adapter);
-			addressBook.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					//String item = ((TextView)view).getText().toString();
-		               
-	                //Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
-	                
-	        		Intent intent = new Intent(AddressBook.this, AddressInfo.class);
-	            	intent.putExtra("Action", ((TextView)view).getText().toString());
-	        		startActivity(intent);
-	            	//return true;
-				}
-			});
+			//handles what happens when you click on an address
+			Intent handle = getIntent();
+			String editOrSelect = handle.getStringExtra("EditOrSelect");
+			
+			if(editOrSelect.equalsIgnoreCase("edit")){
+				ListView addressBook = (ListView) findViewById(android.R.id.list);
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_layout,	addressStrings);
+				addressBook.setAdapter(adapter);
+				addressBook.setOnItemClickListener(new OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						//String item = ((TextView)view).getText().toString();
+
+						//Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+
+						Intent intent = new Intent(AddressBook.this, AddressInfo.class);
+						intent.putExtra("Action", ((TextView)view).getText().toString());
+						startActivity(intent);
+						//return true;
+					}
+				});
+			} else if(editOrSelect.equalsIgnoreCase("select")){
+//				Intent intent = getIntent();
+//				String eventName = intent.getStringExtra("EventName");
+				ListView addressBook = (ListView) findViewById(android.R.id.list);
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_layout,	addressStrings);
+				addressBook.setAdapter(adapter);
+				addressBook.setOnItemClickListener(new OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						//String item = ((TextView)view).getText().toString();
+
+						//Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+						Intent eventIntent = getIntent();
+						String eventName = eventIntent.getStringExtra("EventName");
+						//Toast.makeText(getBaseContext(), eventName, Toast.LENGTH_LONG).show();
+						Event event = EventManager.getEvent(eventName);
+						Address address = AddressBook.getAddress(((TextView)view).getText().toString());
+						if(event == null) {
+							Toast.makeText(getBaseContext(), "NULL", Toast.LENGTH_LONG).show();
+						} else {
+							event.editAddess(address);
+						}
+						Intent intent = new Intent(AddressBook.this, EventInfo.class);
+						intent.putExtra("AddressName", ((TextView)view).getText().toString());
+						intent.putExtra("EventName", eventName);
+						startActivity(intent);
+						//return true;
+					}
+				});
+			}
 		
 		}
 		
@@ -92,6 +129,7 @@ public class AddressBook extends ListActivity {
 			//}
 			this.deleteDatabase(db.getName());
 			addresses = db.getAllAdresses();
+			this.resetNextAddressID();
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			//save data
@@ -100,19 +138,6 @@ public class AddressBook extends ListActivity {
 		return true;
     	
     	
-	}
-	
-	public void addressEdit(View view) {
-//		ListView list = (ListView) findViewById(R.id.address_book);
-//		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//			   public void onItemClick(AdapterView parentView, View childView, int position, long id) {  
-//		            setDetail(position);  
-//		        }
-//		        public void onNothingSelected(AdapterView parentView) {  
-//
-//		        }  
-//		});
-		//list.setAdapter(adapter);
 	}
 	
 	public static ArrayList<Address> getAddresses() {
@@ -145,6 +170,14 @@ public class AddressBook extends ListActivity {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 		return;
+	}
+	
+	public static int getNextAddressID() {
+		return nextAddressID++;
+	}
+	
+	public void resetNextAddressID() {
+		nextAddressID = 1;
 	}
 
 

@@ -97,7 +97,7 @@ public class ContactDbHelper extends SQLiteOpenHelper {
 	    values.put(FeedContactEntry.CONTACT_PHONE_NUMBER, contact.getPhoneNumber());
 	    values.put(FeedContactEntry.CONTACT_EMAIL, contact.getEmail());
 	    
-	    return db.update(FeedContactEntry.TABLE_NAME, values, FeedContactEntry._ID + " = ?",
+	    return db.update(FeedContactEntry.TABLE_NAME, values, FeedContactEntry.CONTACT_ID + " = ?",
 	            new String[] { String.valueOf(contact.getID()) });
 	}
 	

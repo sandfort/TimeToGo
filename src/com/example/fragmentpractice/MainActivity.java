@@ -47,11 +47,13 @@ public class MainActivity extends Activity {
     
     public void showAddressBook(View view) {
     	Intent intent = new Intent(this, AddressBook.class);
+    	intent.putExtra("EditOrSelect", "edit");
     	startActivity(intent);
     }
     
     public void showContactList(View view) {
     	Intent intent = new Intent(this, ContactList.class);
+    	intent.putExtra("EditOrSelect", "edit");
     	startActivity(intent);
     }
     

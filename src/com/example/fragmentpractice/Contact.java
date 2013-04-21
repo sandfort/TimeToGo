@@ -10,6 +10,7 @@ public class Contact {
 	private String email;
 	
 	public Contact(String name, String notes, String phoneNumber, String email) {
+		this._id = ContactList.getNextContactID();
 		this.name = name;
 		this.notes = notes;
 		this.phoneNumber = phoneNumber;

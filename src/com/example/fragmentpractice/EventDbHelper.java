@@ -73,7 +73,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		if (cursor != null)
 	        cursor.moveToFirst();
 		
-		Event event = new Event(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), null, null);
+		Event event = new Event(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), 
+				cursor.getString(3), cursor.getString(4), AddressBook.getAddress(cursor.getString(5)), 
+    			ContactList.getContacts(cursor.getString(6)));
 		db.close();
 		return event;
 	}
@@ -88,7 +90,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	 
 	    if (cursor.moveToFirst()) {
 	        do {
-	        	Event event = new Event(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), null, null);
+	        	Event event = new Event(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), 
+	        			cursor.getString(3), cursor.getString(4), AddressBook.getAddress(cursor.getString(5)), 
+	        			ContactList.getContacts(cursor.getString(6)));
 	            events.add(event);
 	        } while (cursor.moveToNext());
 	    }
@@ -106,10 +110,15 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		values.put(FeedEventEntry.EVENT_TIME, event.getTime());
 		values.put(FeedEventEntry.EVENT_DATE, event.getDate());
 		values.put(FeedEventEntry.EVENT_ADDRESS, event.getAddressName());
-		values.put(FeedEventEntry.EVENT_CONTACTS, event.getContactsString());
-	    
-	    return db.update(FeedEventEntry.TABLE_NAME, values, FeedEventEntry._ID + " = ?",
+		values.put(FeedEventEntry.EVENT_CONTACTS, event.getContactsString());  
+			
+	    int returnInt = db.update(FeedEventEntry.TABLE_NAME, values, FeedEventEntry.EVENT_ID + " = ? ",
 	            new String[] { String.valueOf(event.getID()) });
+	    //this.close();
+	    db.close();
+		//return db.update(FeedEventEntry.TABLE_NAME, values, FeedEventEntry._ID + " = ?",
+	    //        new String[] { String.valueOf(event.getID()) });
+	    return returnInt;
 	}
 	
 	public void deleteEvent(Event event) {

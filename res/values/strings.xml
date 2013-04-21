@@ -38,6 +38,7 @@
     <string name="enter_event_time">Enter Event Time (hour:minutes)</string>
     <string name="enter_event_address">Enter Event Address</string>
     <string name="event_address_button">From List</string>
+    <string name="enter_event_contacts">Enter Event Contacts (; separated)</string>
     <string name="start_trip_button">Start Trip</string>
     <string name="clear_addresses_database">Clear Addresses</string>
     <string name="clear_contacts_database">Clear Contacts</string>
@@ -52,5 +53,6 @@
     <string name="time_me">Time Me</string>
     <string name="i_am_here">I\'m Here</string>
     
+    <string name="i_will_be_late">I Will Be Late</string>
 
 </resources>

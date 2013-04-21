@@ -9,15 +9,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class EventManager extends ListActivity {
 
 	private static ArrayList<Event> events = new ArrayList<Event>();
 	private static EventManager eventManager = new EventManager();
+	private static int nextEventID = 1;
 	
 	
 	@Override
@@ -32,6 +33,19 @@ public class EventManager extends ListActivity {
 		EventDbHelper db = new EventDbHelper(this);
 		//get all addresses from address database
 		events = db.getAllEvents();
+//		String intentString = getIntent().getStringExtra("event");
+//		if(intentString != null && intentString.equalsIgnoreCase("quick")) {
+//			Intent intent = new Intent(this, AddressBook.class);
+//			intent.putExtra("EditOrSelect", "select");
+//			intent.putExtra("EventName", getIntent().getStringExtra("event"));
+//			Toast.makeText(getBaseContext(), getIntent().getStringExtra("event"), Toast.LENGTH_LONG).show();
+//			try {
+//				Thread.sleep(100);
+//			} catch (Exception e) {
+//				
+//			}
+//			startActivity(intent);
+//		}
 		//displays addresses or says that no addresses exist
 		if (events == null) {
 			String[] eventStrings = new String[] { "No Events"};
@@ -60,6 +74,7 @@ public class EventManager extends ListActivity {
 				}
 			});
 		}
+		db.close();
 //		setContentView(R.layout.activity_event_manager);
 	}
 
@@ -87,6 +102,7 @@ public class EventManager extends ListActivity {
 			EventDbHelper db = new EventDbHelper(this);
 			this.deleteDatabase(db.getName());
 			events = db.getAllEvents();
+			this.resetNextEventID();
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 		//	return true;
@@ -95,7 +111,7 @@ public class EventManager extends ListActivity {
 		
 	}
 	
-	public ArrayList<Event> getEvents() {
+	public static ArrayList<Event> getEvents() {
 		return events;
 	}
 	
@@ -117,6 +133,14 @@ public class EventManager extends ListActivity {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 		return;
+	}
+	
+	public static int getNextEventID() {
+		return nextEventID++;
+	}
+	
+	public void resetNextEventID() {
+		nextEventID = 1;
 	}
 
 	

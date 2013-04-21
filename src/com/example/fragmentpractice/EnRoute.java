@@ -57,8 +57,13 @@ public class EnRoute extends Activity {
 			eventTime.setTextSize(50);
 			eventTime.setText(totalTime.toString());
 		} else {
-			
+			//Save in final events database
+			//Remove move to different array list in event manager
 		}
+	}
+	
+	public void iWillBeLate(View view) {
+		
 	}
 	
 }

@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventInfo" 
-	android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context=".EventInfo" >
 
     <EditText
         android:id="@+id/event_name"
@@ -24,14 +24,14 @@
         android:hint="@string/enter_event_notes"
         android:inputType="textMultiLine|textCapSentences" />
 
-	<EditText
+    <EditText
         android:id="@+id/event_time"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/enter_event_time"
         android:inputType="time" />
-    
+
     <EditText
         android:id="@+id/event_date"
         android:layout_width="fill_parent"
@@ -39,23 +39,45 @@
         android:ems="10"
         android:hint="@string/enter_event_date"
         android:inputType="date" />
-    
+
     <EditText
         android:id="@+id/event_address"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/enter_event_address"
+        android:clickable="false" 
+        android:cursorVisible="false" 
+        android:focusable="false" 
+        android:focusableInTouchMode="false"
         android:inputType="textPostalAddress" />
-    
+
     <Button
         android:id="@+id/event_address_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="selectAddress"
         android:text="@string/event_address_button" />
-    
-    
+
+    <EditText
+        android:id="@+id/event_contacts"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_event_contacts"
+        android:clickable="false" 
+        android:cursorVisible="false" 
+        android:focusable="false" 
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName|textCapWords" />
+
+    <Button
+        android:id="@+id/event_contact_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="selectContacts"
+        android:text="@string/event_address_button" />
+
     <Button
         android:id="@+id/create"
         android:layout_width="fill_parent"
@@ -69,5 +91,5 @@
         android:layout_height="wrap_content"
         android:onClick="startTrip"
         android:text="@string/start_trip_button" />
-    
+
 </LinearLayout>

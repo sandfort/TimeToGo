@@ -39,4 +39,11 @@
         android:onClick="iAmHere"
         android:text="@string/i_am_here" />
 
+    <Button
+        android:id="@+id/i_will_be_late"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="iWillBeLate"
+        android:text="@string/i_will_be_late" />
+
 </LinearLayout>

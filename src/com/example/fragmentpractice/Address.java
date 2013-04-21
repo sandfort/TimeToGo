@@ -8,6 +8,7 @@ public class Address {
 	private String location;
 	
 	public Address(String name, String notes, String location) {
+		this._id = AddressBook.nextAddressID;
 		this.name = name;
 		this.notes = notes;
 		this.location = location;

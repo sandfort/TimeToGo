@@ -16,8 +16,8 @@ public class AddressDbHelper extends SQLiteOpenHelper {
 		    "CREATE TABLE " + FeedAddressEntry.TABLE_NAME + "(" +
 		    		FeedAddressEntry.ADDRESS_ID + " INTEGER PRIMARY KEY," +
 		    		FeedAddressEntry.ADDRESS_NAME + TEXT_TYPE + COMMA_SEP +
-		    		FeedAddressEntry.ADDRESS_LOCATION + TEXT_TYPE + COMMA_SEP +
-		    		FeedAddressEntry.ADDRESS_NOTE + TEXT_TYPE + ")";
+		    		FeedAddressEntry.ADDRESS_NOTE + TEXT_TYPE + COMMA_SEP +
+		    		FeedAddressEntry.ADDRESS_LOCATION + TEXT_TYPE + ")";
 	
 	private static final String SQL_DELETE_ENTRIES =
 		    "DROP TABLE IF EXISTS " + FeedAddressEntry.TABLE_NAME;
@@ -47,8 +47,8 @@ public class AddressDbHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(FeedAddressEntry.ADDRESS_NAME, address.getName());
-		values.put(FeedAddressEntry.ADDRESS_LOCATION, address.getLocation());
 		values.put(FeedAddressEntry.ADDRESS_NOTE, address.getNotes());
+		values.put(FeedAddressEntry.ADDRESS_LOCATION, address.getLocation());
 		
 		db.insert(FeedAddressEntry.TABLE_NAME, null, values);
 		db.close();
@@ -58,13 +58,13 @@ public class AddressDbHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		
 		Cursor cursor = db.query(FeedAddressEntry.TABLE_NAME, 
-				new String[] {FeedAddressEntry.ADDRESS_ID, FeedAddressEntry.ADDRESS_NAME, FeedAddressEntry.ADDRESS_LOCATION, FeedAddressEntry.ADDRESS_NOTE}, FeedAddressEntry.ADDRESS_ID  
+				new String[] {FeedAddressEntry.ADDRESS_ID, FeedAddressEntry.ADDRESS_NAME, FeedAddressEntry.ADDRESS_NOTE, FeedAddressEntry.ADDRESS_LOCATION}, FeedAddressEntry.ADDRESS_ID  
 				+ "=?", new String[] { String.valueOf(id) }, null, null, null, null); 
 		
 		if (cursor != null)
 	        cursor.moveToFirst();
 		
-		Address address = new Address(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(3), cursor.getString(2));
+		Address address = new Address(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 		return address;
 	}
 	
@@ -91,10 +91,11 @@ public class AddressDbHelper extends SQLiteOpenHelper {
 	 
 	    ContentValues values = new ContentValues();
 	    values.put(FeedAddressEntry.ADDRESS_NAME, address.getName());
-	    values.put(FeedAddressEntry.ADDRESS_LOCATION, address.getLocation());
 	    values.put(FeedAddressEntry.ADDRESS_NOTE, address.getNotes());
+	    values.put(FeedAddressEntry.ADDRESS_LOCATION, address.getLocation());
+	    
 	    	 
-	    return db.update(FeedAddressEntry.TABLE_NAME, values, FeedAddressEntry._ID + " = ?",
+	    return db.update(FeedAddressEntry.TABLE_NAME, values, FeedAddressEntry.ADDRESS_ID + " = ?",
 	            new String[] { String.valueOf(address.getID()) });
 	}
 	
