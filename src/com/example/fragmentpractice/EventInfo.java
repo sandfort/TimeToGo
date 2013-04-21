@@ -19,7 +19,7 @@ public class EventInfo extends Activity {
 	//private ArrayList<Event> events = new ArrayList<Event>();
 	private String action = null;
 	private String eventName = null;
-	//private int alarmRequestCode = 0;
+	private int alarmRequestCode = 0;
 	
 	ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
 	ArrayList<AlarmManager> alarmManager = new ArrayList<AlarmManager>();
