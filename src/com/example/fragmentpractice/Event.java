@@ -33,10 +33,11 @@ public class Event {
 		this.contacts = contacts;
 	}
 	
-	
+	/*
 	public void calculateNow() {
-		
+
 	}
+	*/
 		
 	public void beginTrip() {
 		

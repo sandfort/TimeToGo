@@ -47,12 +47,10 @@
     <string name="create_text_button">New Text</string>
     <string name="title_activity_en_route">EnRoute</string>
     <string name="action_settings">Settings</string>
-    
     <string name="digital_clock">DigitalClock</string>
-
     <string name="time_me">Time Me</string>
     <string name="i_am_here">I\'m Here</string>
-    
     <string name="i_will_be_late">I Will Be Late</string>
+    <string name="title_activity_etacalc">ETACalc</string>
 
 </resources>
