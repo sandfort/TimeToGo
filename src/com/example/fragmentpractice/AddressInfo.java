@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class AddressInfo extends Activity {
- 
+
 	private String action = null;
 
 	@Override
@@ -18,16 +18,16 @@ public class AddressInfo extends Activity {
 		setContentView(R.layout.activity_address_info);
 		Intent intent = getIntent();
 		action = intent.getStringExtra("Action");
-		if(!action.equalsIgnoreCase("Create")){
-			
+		if (!action.equalsIgnoreCase("Create")) {
+
 			Address address = AddressBook.getAddress(action);
 			String addressNotes = address.getNotes();
 			String addressLocation = address.getLocation();
-			
+
 			EditText addressNameEdit = (EditText) findViewById(R.id.address_name);
 			EditText addressNotesEdit = (EditText) findViewById(R.id.address_notes);
 			EditText addressLocationEdit = (EditText) findViewById(R.id.address_location);
-			
+
 			addressNameEdit.setText(action);
 			addressNotesEdit.setText(addressNotes);
 			addressLocationEdit.setText(addressLocation);
@@ -42,41 +42,46 @@ public class AddressInfo extends Activity {
 		return true;
 	}
 
-	public void createAddress(View view){
+	public void createAddress(View view) {
 		// get data from text boxes
 		EditText addressName = (EditText) findViewById(R.id.address_name);
 		EditText addressNotes = (EditText) findViewById(R.id.address_notes);
 		EditText addressLocation = (EditText) findViewById(R.id.address_location);
-		
+
 		AddressDbHelper db = new AddressDbHelper(this);
-		
-		Address address = AddressBook.getAddress(addressName.getText().toString());
-		
-		if(address != null) {
-			//update address object with the information
+
+		Address address = AddressBook.getAddress(addressName.getText()
+				.toString());
+
+		if (address != null) {
+			// update address object with the information
 			int addressID = address.getID();
-			address = new Address(addressID, addressName.getText().toString(), addressNotes.getText().toString(), addressLocation.getText().toString());
+			address = new Address(addressID, addressName.getText().toString(),
+					addressNotes.getText().toString(), addressLocation
+							.getText().toString());
 		} else {
-			//create an address object with the information
-			address = new Address(addressName.getText().toString(), addressNotes.getText().toString(), addressLocation.getText().toString());	
+			// create an address object with the information
+			address = new Address(addressName.getText().toString(),
+					addressNotes.getText().toString(), addressLocation
+							.getText().toString());
 		}
-		
-		//create an address object with the information
-		//Address address = new Address(addressName.getText().toString(), addressNotes.getText().toString(), addressLocation.getText().toString());
-		
+
+		// create an address object with the information
+		// Address address = new Address(addressName.getText().toString(),
+		// addressNotes.getText().toString(),
+		// addressLocation.getText().toString());
+
 		// make a database connection and add address to it
-		//AddressDbHelper db = new AddressDbHelper(this);
-		
-		
-		
-		if(action.equalsIgnoreCase("Create")) {
+		// AddressDbHelper db = new AddressDbHelper(this);
+
+		if (action.equalsIgnoreCase("Create")) {
 			db.addAddress(address);
-			//db.addAddress(new Address("Hell", null, null));
+			// db.addAddress(new Address("Hell", null, null));
 		} else {
-			//needs to be fixed
+			// needs to be fixed
 			db.updateAddress(address);
-			//db.addAddress(new Address("He'll", null, null));
-			//db.addAddress(address);
+			// db.addAddress(new Address("He'll", null, null));
+			// db.addAddress(address);
 		}
 		db.close();
 		// on clicking "Create"
@@ -85,7 +90,5 @@ public class AddressInfo extends Activity {
 		intent.putExtra("EditOrSelect", "edit");
 		startActivity(intent);
 	}
-	
-
 
 }

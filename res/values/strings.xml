@@ -52,5 +52,6 @@
     <string name="i_am_here">I\'m Here</string>
     <string name="i_will_be_late">I Will Be Late</string>
     <string name="title_activity_etacalc">ETACalc</string>
+    <string name="calculate_now_button">Calculate Now</string>
 
 </resources>

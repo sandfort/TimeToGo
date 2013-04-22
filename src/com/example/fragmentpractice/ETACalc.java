@@ -10,15 +10,16 @@ import android.view.Menu;
 
 @SuppressLint("NewApi")
 public class ETACalc extends Activity {
-	
+
 	private GoogleMap map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eta_calc);
-		
-		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+
+		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+				.getMap();
 	}
 
 	@Override

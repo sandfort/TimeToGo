@@ -15,7 +15,7 @@ public class EnRoute extends Activity {
 
 	private Date startDate = null;
 	private boolean timing = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,15 +23,14 @@ public class EnRoute extends Activity {
 		timing = false;
 		Intent intent = getIntent();
 		String message = intent.getStringExtra("Event Time");
-		
-		
+
 		DigitalClock clock = (DigitalClock) findViewById(R.id.digitalClock1);
 		clock.setTextSize(50);
-		
+
 		TextView eventTime = (TextView) findViewById(R.id.en_route_event_time);
 		eventTime.setTextSize(50);
 		eventTime.setText(message);
-		
+
 	}
 
 	@Override
@@ -41,29 +40,28 @@ public class EnRoute extends Activity {
 		return true;
 	}
 
-	
 	public void timeMe(View view) {
 		startDate = new Date();
 		timing = true;
 	}
-	
+
 	public void iAmHere(View view) {
-		if(timing) {
+		if (timing) {
 			timing = false;
 			Date endDate = new Date();
 			Long totalTime = endDate.getTime() - startDate.getTime();
-			
+
 			TextView eventTime = (TextView) findViewById(R.id.en_route_event_time);
 			eventTime.setTextSize(50);
 			eventTime.setText(totalTime.toString());
 		} else {
-			//Save in final events database
-			//Remove move to different array list in event manager
+			// Save in final events database
+			// Remove move to different array list in event manager
 		}
 	}
-	
+
 	public void iWillBeLate(View view) {
-		
+
 	}
-	
+
 }

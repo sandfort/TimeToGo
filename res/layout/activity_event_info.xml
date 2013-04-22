@@ -91,5 +91,12 @@
         android:layout_height="wrap_content"
         android:onClick="startTrip"
         android:text="@string/start_trip_button" />
+    
+    <Button
+        android:id="@+id/calculate_now"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="calculateNow"
+        android:text="@string/calculate_now_button" />
 
 </LinearLayout>
