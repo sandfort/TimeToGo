@@ -353,6 +353,7 @@ public class EventInfo extends Activity {
 	public void calculateNow() {
 		Intent intent = new Intent(this, ETACalc.class);
 		// TODO: send along either Event object or the Event's id as an extra
+		startActivity(intent);
 	}
 
 	@Override
