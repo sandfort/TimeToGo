@@ -59,11 +59,13 @@ public class ETACalc extends Activity {
 		vMap.onLowMemory();
 	}
 
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.etacalc, menu);
 		return true;
 	}
+	*/
 
 }
