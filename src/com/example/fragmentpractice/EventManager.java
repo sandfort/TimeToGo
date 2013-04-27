@@ -19,7 +19,8 @@ public class EventManager extends ListActivity {
 	private static ArrayList<Event> events = new ArrayList<Event>();
 	private static EventManager eventManager = new EventManager();
 	private static int nextEventID = 1;
-
+	private static int nextTravelTimeID = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -113,7 +114,17 @@ public class EventManager extends ListActivity {
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			// return true;
-		}
+		} else if (choice == R.id.clear_travel_times_database) {
+			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
+			this.deleteDatabase(db.getName());
+			//events = db.getAllEvents();
+			this.resetNextTravelTimeID();
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+			// return true;
+		} 
+		
+		
 		return true;
 
 	}
@@ -148,6 +159,14 @@ public class EventManager extends ListActivity {
 
 	public void resetNextEventID() {
 		nextEventID = 1;
+	}
+	
+	public static int getNextTravelTimeID() {
+		return nextTravelTimeID++;
+	}
+
+	public void resetNextTravelTimeID() {
+		nextTravelTimeID = 1;
 	}
 
 }

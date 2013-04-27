@@ -442,6 +442,30 @@ public class EventInfo extends Activity {
 
 	public void calculateNow(View view) {
 		//TODO get values from database
+		EditText eventStartAddress = (EditText) findViewById(R.id.start_address);
+		EditText eventAddress = (EditText) findViewById(R.id.event_address);
+		EditText eventTravelTime = (EditText) findViewById(R.id.travel_time_guess);
+		
+		if(eventTravelTime.getText().toString().equalsIgnoreCase("")) {
+			
+			//USE DATABASE TO GET PREVIOUS TRAVEL TIMES
+			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
+			ArrayList<TravelTime> travelTimes = db.getAllTravelTime(eventStartAddress.getText().toString(), eventAddress.getText().toString());
+			float totalTime = 0;
+			if (travelTimes.size() != 0) {
+				for (int i = 0; i < travelTimes.size(); ++i) {
+					totalTime = totalTime + travelTimes.get(i).getTravelTime();
+				}
+				totalTime = totalTime / travelTimes.size();
+			}
+			Toast.makeText(getBaseContext(), Float.toString(totalTime),
+					Toast.LENGTH_LONG).show();
+			
+			//SET ALARM BASED ON THOSE
+			
+		} else {
+			//SET ALARM BASED ON THIS TRAVEL TIME
+		}
 	}
 
 	@Override
