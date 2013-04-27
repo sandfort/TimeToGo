@@ -34,8 +34,9 @@
     <string name="save_events_button">Save Events</string>
     <string name="stop_alarm_button">Stop Alarm</string>
     <string name="create_alarm_button">Create Alarm</string>
-    <string name="enter_event_date">Enter Event Date (month#/day#)</string>
+    <string name="enter_event_date">Enter Event Date (month#/day#/year####)</string>
     <string name="enter_event_time">Enter Event Time (hour:minutes)</string>
+    <string name="enter_start_address">Enter Start Address</string>
     <string name="enter_event_address">Enter Event Address</string>
     <string name="event_address_button">From List</string>
     <string name="enter_event_contacts">Enter Event Contacts (; separated)</string>

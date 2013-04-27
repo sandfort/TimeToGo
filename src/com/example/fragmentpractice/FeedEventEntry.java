@@ -9,7 +9,8 @@ public abstract class FeedEventEntry implements BaseColumns {
 	public static final String EVENT_NOTE = "notes";
 	public static final String EVENT_TIME = "time";
 	public static final String EVENT_DATE = "date";
-	public static final String EVENT_ADDRESS = "address";
+	public static final String EVENT_START_ADDRESS = "startAddress";
+	public static final String EVENT_END_ADDRESS = "endAddress";
 	public static final String EVENT_CONTACTS = "contacts";
 
 }

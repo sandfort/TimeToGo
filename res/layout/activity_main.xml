@@ -15,7 +15,7 @@
         android:text="@string/event_manager_button" />
 
     <Button
-        android:id="@+id/Button01"
+        android:id="@+id/event_start_address_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/time_me"
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/time_me"
-        android:layout_below="@+id/Button01"
+        android:layout_below="@+id/event_start_address_button"
         android:layout_marginTop="20dp"
         android:onClick="showAddressBook"
         android:text="@string/address_book_button" />

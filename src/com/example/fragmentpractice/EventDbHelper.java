@@ -18,7 +18,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 			+ COMMA_SEP + FeedEventEntry.EVENT_NOTE + TEXT_TYPE + COMMA_SEP
 			+ FeedEventEntry.EVENT_TIME + TEXT_TYPE + COMMA_SEP
 			+ FeedEventEntry.EVENT_DATE + TEXT_TYPE + COMMA_SEP
-			+ FeedEventEntry.EVENT_ADDRESS + TEXT_TYPE + COMMA_SEP
+			+ FeedEventEntry.EVENT_START_ADDRESS + TEXT_TYPE + COMMA_SEP
+			+ FeedEventEntry.EVENT_END_ADDRESS + TEXT_TYPE + COMMA_SEP
 			+ FeedEventEntry.EVENT_CONTACTS + TEXT_TYPE + ")";
 
 	private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS "
@@ -53,7 +54,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		values.put(FeedEventEntry.EVENT_NOTE, event.getNotes());
 		values.put(FeedEventEntry.EVENT_TIME, event.getTime());
 		values.put(FeedEventEntry.EVENT_DATE, event.getDate());
-		values.put(FeedEventEntry.EVENT_ADDRESS, event.getAddressName());
+		values.put(FeedEventEntry.EVENT_START_ADDRESS, event.getStartAddressName());
+		values.put(FeedEventEntry.EVENT_END_ADDRESS, event.getEndAddressName());
 		values.put(FeedEventEntry.EVENT_CONTACTS, event.getContactsString());
 
 		db.insert(FeedEventEntry.TABLE_NAME, null, values);
@@ -66,8 +68,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		Cursor cursor = db.query(FeedEventEntry.TABLE_NAME, new String[] {
 				FeedEventEntry.EVENT_ID, FeedEventEntry.EVENT_NAME,
 				FeedEventEntry.EVENT_NOTE, FeedEventEntry.EVENT_TIME,
-				FeedEventEntry.EVENT_DATE, FeedEventEntry.EVENT_ADDRESS,
-				FeedEventEntry.EVENT_CONTACTS },
+				FeedEventEntry.EVENT_DATE, FeedEventEntry.EVENT_START_ADDRESS, 
+				FeedEventEntry.EVENT_END_ADDRESS, FeedEventEntry.EVENT_CONTACTS },
 				FeedEventEntry.EVENT_ID + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 
@@ -76,9 +78,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 
 		Event event = new Event(Integer.parseInt(cursor.getString(0)),
 				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4),
-				AddressBook.getAddress(cursor.getString(5)),
-				ContactList.getContacts(cursor.getString(6)));
+				cursor.getString(4), AddressBook.getAddress(cursor.getString(5)),
+				AddressBook.getAddress(cursor.getString(6)), ContactList.getContacts(cursor.getString(7)));
 		db.close();
 		return event;
 	}
@@ -95,9 +96,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 			do {
 				Event event = new Event(Integer.parseInt(cursor.getString(0)),
 						cursor.getString(1), cursor.getString(2),
-						cursor.getString(3), cursor.getString(4),
-						AddressBook.getAddress(cursor.getString(5)),
-						ContactList.getContacts(cursor.getString(6)));
+						cursor.getString(3), cursor.getString(4), AddressBook.getAddress(cursor.getString(5)),
+						AddressBook.getAddress(cursor.getString(6)), ContactList.getContacts(cursor.getString(7)));
 				events.add(event);
 			} while (cursor.moveToNext());
 		}
@@ -114,7 +114,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		values.put(FeedEventEntry.EVENT_NOTE, event.getNotes());
 		values.put(FeedEventEntry.EVENT_TIME, event.getTime());
 		values.put(FeedEventEntry.EVENT_DATE, event.getDate());
-		values.put(FeedEventEntry.EVENT_ADDRESS, event.getAddressName());
+		values.put(FeedEventEntry.EVENT_START_ADDRESS, event.getStartAddressName());
+		values.put(FeedEventEntry.EVENT_END_ADDRESS, event.getEndAddressName());
 		values.put(FeedEventEntry.EVENT_CONTACTS, event.getContactsString());
 
 		int returnInt = db.update(FeedEventEntry.TABLE_NAME, values,

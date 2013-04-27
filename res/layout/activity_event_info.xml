@@ -4,8 +4,8 @@
     android:layout_height="fill_parent" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".EventInfo" >
 
@@ -45,6 +45,25 @@
             android:inputType="date" />
 
         <EditText
+            android:id="@+id/start_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/enter_start_address"
+            android:inputType="textPostalAddress" />
+
+        <Button
+            android:id="@+id/event_start_address_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="selectStartAddress"
+            android:text="@string/event_address_button" />
+
+        <EditText
             android:id="@+id/event_address"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -60,7 +79,7 @@
             android:id="@+id/event_address_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="selectAddress"
+            android:onClick="selectEventAddress"
             android:text="@string/event_address_button" />
 
         <EditText
