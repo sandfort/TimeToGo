@@ -47,7 +47,7 @@ public class TravelTimeDbHelper extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put(FeedTravelTimeEntry.START_ADDRESS, travelTime.getStartAddressString());
 		values.put(FeedTravelTimeEntry.END_ADDRESS, travelTime.getEndAddressString());
-		values.put(FeedTravelTimeEntry.TRAVEL_TIME, Integer.toString(travelTime.getTravelTime()));
+		values.put(FeedTravelTimeEntry.TRAVEL_TIME, Float.toString(travelTime.getTravelTime()));
 
 		db.insert(FeedTravelTimeEntry.TABLE_NAME, null, values);
 		db.close();
@@ -68,7 +68,7 @@ public class TravelTimeDbHelper extends SQLiteOpenHelper {
 
 		TravelTime travelTime = new TravelTime(Integer.parseInt(cursor.getString(0)),
 				AddressBook.getAddress(cursor.getString(1)), AddressBook.getAddress(cursor.getString(2)), 
-				Integer.parseInt(cursor.getString(3)));
+				Float.parseFloat(cursor.getString(3)));
 		return travelTime;
 	}
 
@@ -86,7 +86,7 @@ public class TravelTimeDbHelper extends SQLiteOpenHelper {
 			do {
 				TravelTime travelTime = new TravelTime(Integer.parseInt(cursor.getString(0)),
 						AddressBook.getAddress(cursor.getString(1)), AddressBook.getAddress(cursor.getString(2)), 
-						Integer.parseInt(cursor.getString(3)));
+						Float.parseFloat(cursor.getString(3)));
 				travelTimes.add(travelTime);
 			} while (cursor.moveToNext());
 		}

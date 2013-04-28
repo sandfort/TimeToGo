@@ -429,13 +429,16 @@ public class EventInfo extends Activity {
 			// db.addEvent(new Address("Hell", null, null));
 		} else {
 			// needs to be fixed
-			db.deleteEvent(event);
+			
+			//db.deleteEvent(event); ******
+			
 			// db.addAddress(new Address("He'll", null, null));
 			// db.addAddress(address);
 		}
 
 		Intent intent = new Intent(this, EnRoute.class);
 		intent.putExtra("Event Time", eventTime.getText().toString());
+		intent.putExtra("Event Name", eventName.getText().toString());
 		startActivity(intent);
 
 	}

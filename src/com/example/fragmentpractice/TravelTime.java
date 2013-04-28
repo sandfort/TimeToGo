@@ -4,16 +4,16 @@ public class TravelTime {
 	private int _id;
 	private Address startAddress;
 	private Address endAddress;
-	private int travelTime;
+	private float travelTime;
 	
-	public TravelTime(Address startAddress, Address endAddress, int travelTime) {
+	public TravelTime(Address startAddress, Address endAddress, float travelTime) {
 		this._id = EventManager.getNextTravelTimeID();
 		this.startAddress = startAddress;
 		this.endAddress = endAddress;
 		this.travelTime = travelTime;
 	}
 
-	public TravelTime(int _id, Address startAddress, Address endAddress, int travelTime) {
+	public TravelTime(int _id, Address startAddress, Address endAddress, float travelTime) {
 		this._id = _id;
 		this.startAddress = startAddress;
 		this.endAddress = endAddress;
@@ -40,7 +40,7 @@ public class TravelTime {
 		return this.endAddress.getName();
 	}
 	
-	public int getTravelTime() {
+	public float getTravelTime() {
 		return this.travelTime;
 	}
 	
