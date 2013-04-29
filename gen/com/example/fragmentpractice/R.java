@@ -82,8 +82,9 @@ public final class R {
         public static final int activity_event_manager=0x7f030007;
         public static final int activity_main=0x7f030008;
         public static final int activity_quick_texts_manager=0x7f030009;
-        public static final int activity_user_prefs=0x7f03000a;
-        public static final int list_layout=0x7f03000b;
+        public static final int activity_send_message=0x7f03000a;
+        public static final int activity_user_prefs=0x7f03000b;
+        public static final int list_layout=0x7f03000c;
     }
     public static final class menu {
         public static final int activity_address_book=0x7f090000;
@@ -97,6 +98,7 @@ public final class R {
         public static final int activity_quick_texts_manager=0x7f090008;
         public static final int en_route=0x7f090009;
         public static final int etacalc=0x7f09000a;
+        public static final int send_message=0x7f09000b;
     }
     public static final class string {
         public static final int action_settings=0x7f06002e;
@@ -139,27 +141,27 @@ public final class R {
         public static final int i_am_here=0x7f060031;
         public static final int i_will_be_late=0x7f060032;
         public static final int menu_settings=0x7f060017;
-        public static final int pref_default_display_name=0x7f06003c;
-        public static final int pref_description_social_recommendations=0x7f06003a;
+        public static final int pref_default_display_name=0x7f06003d;
+        public static final int pref_description_social_recommendations=0x7f06003b;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f06003e;
+        public static final int pref_header_data_sync=0x7f06003f;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f060038;
+        public static final int pref_header_general=0x7f060039;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f060041;
-        public static final int pref_ringtone_silent=0x7f060044;
-        public static final int pref_title_add_friends_to_messages=0x7f06003d;
-        public static final int pref_title_display_name=0x7f06003b;
-        public static final int pref_title_new_message_notifications=0x7f060042;
-        public static final int pref_title_ringtone=0x7f060043;
-        public static final int pref_title_social_recommendations=0x7f060039;
-        public static final int pref_title_sync_frequency=0x7f06003f;
-        public static final int pref_title_system_sync_settings=0x7f060040;
-        public static final int pref_title_vibrate=0x7f060045;
+        public static final int pref_header_notifications=0x7f060042;
+        public static final int pref_ringtone_silent=0x7f060045;
+        public static final int pref_title_add_friends_to_messages=0x7f06003e;
+        public static final int pref_title_display_name=0x7f06003c;
+        public static final int pref_title_new_message_notifications=0x7f060043;
+        public static final int pref_title_ringtone=0x7f060044;
+        public static final int pref_title_social_recommendations=0x7f06003a;
+        public static final int pref_title_sync_frequency=0x7f060040;
+        public static final int pref_title_system_sync_settings=0x7f060041;
+        public static final int pref_title_vibrate=0x7f060046;
         public static final int save_events_button=0x7f06001e;
         public static final int start_trip_button=0x7f060027;
         public static final int stop_alarm_button=0x7f06001f;
@@ -173,7 +175,8 @@ public final class R {
         public static final int title_activity_etacalc=0x7f060033;
         public static final int title_activity_event_info=0x7f06001b;
         public static final int title_activity_event_manager=0x7f06001a;
-        public static final int title_activity_user_prefs=0x7f060037;
+        public static final int title_activity_send_message=0x7f060037;
+        public static final int title_activity_user_prefs=0x7f060038;
         public static final int user_prefs=0x7f060005;
         public static final int user_prefs_button=0x7f060004;
     }

@@ -56,5 +56,6 @@
     <string name="calculate_now_button">Calculate Now</string>
     <string name="clear_travel_times_database">Clear Travel Times</string>
     <string name="enter_guess_time">Enter Travel Time (First Time Only)</string>
+    <string name="title_activity_send_message">SendMessage</string>
 
 </resources>

@@ -14,8 +14,9 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permisson.ACCESS_FINE_LOCATION" />
-
+	<uses-permission android:name="android.permisson.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
@@ -35,6 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.example.fragmentpractice.AddressBook"
             android:label="@string/title_activity_address_book" >
@@ -80,6 +82,13 @@
             android:name="com.example.fragmentpractice.ETACalc"
             android:label="@string/title_activity_etacalc" >
         </activity>
+        <activity
+            android:name="com.example.fragmentpractice.SendMessage"
+            android:label="@string/title_activity_send_message" >
+        </activity>
+        
+        
+        
     </application>
 
 </manifest>
