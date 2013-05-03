@@ -119,8 +119,8 @@ public class EventManager extends ListActivity {
 			this.deleteDatabase(db.getName());
 			//events = db.getAllEvents();
 			this.resetNextTravelTimeID();
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
+			//Intent intent = new Intent(this, MainActivity.class);
+			//startActivity(intent);
 			// return true;
 		} 
 		
@@ -144,6 +144,10 @@ public class EventManager extends ListActivity {
 			}
 		}
 		return null;
+	}
+	
+	public static void addEvent(Event event) {
+		events.add(event);
 	}
 
 	@Override

@@ -90,7 +90,8 @@ public class EventInfo extends Activity {
 			// }
 
 			ArrayList<Contact> contacts = null;
-			if (!eventContacts.getText().toString().equalsIgnoreCase("")) {
+			if (!eventContacts.getText().toString().equalsIgnoreCase("")
+					&& !eventContacts.getText().toString().equalsIgnoreCase("none")) {
 				contacts = new ArrayList<Contact>();
 				String[] contactStrings = eventContacts.getText().toString()
 						.split(";");
@@ -170,7 +171,8 @@ public class EventInfo extends Activity {
 			// }
 
 			ArrayList<Contact> contacts = null;
-			if (!eventContacts.getText().toString().equalsIgnoreCase("")) {
+			if (!eventContacts.getText().toString().equalsIgnoreCase("")
+					&& !eventContacts.getText().toString().equalsIgnoreCase("none")) {
 				contacts = new ArrayList<Contact>();
 				String[] contactStrings = eventContacts.getText().toString()
 						.split(";");
@@ -255,7 +257,7 @@ public class EventInfo extends Activity {
 
 			for (int i = 0; i < contactStrings.length; ++i) {
 				contacts.add(ContactList.getContact(contactStrings[i]));
-				Toast.makeText(getBaseContext(), contacts.get(i).getName(),
+				Toast.makeText(getBaseContext(), "Contact Name (1): " + contacts.get(i).getName(),
 						Toast.LENGTH_LONG).show();
 				try {
 					Thread.sleep(100);
@@ -298,8 +300,7 @@ public class EventInfo extends Activity {
 					eventNotes.getText().toString(), eventTime.getText()
 							.toString(), eventDate.getText().toString(),
 							AddressBook.getAddress(eventStartAddress.getText().toString()),
-							AddressBook.getAddress(eventAddress.getText().toString()),
-					contacts);
+							AddressBook.getAddress(eventAddress.getText().toString()), contacts);
 			// event = new Event(eventID, eventName.getText().toString(),
 			// eventNotes.getText().toString(),
 			// eventTime.getText().toString(), eventDate.getText().toString(),
@@ -328,18 +329,27 @@ public class EventInfo extends Activity {
 			// needs to be fixed
 			// Toast.makeText(getBaseContext(), Integer.toString(event.getID())
 			// , Toast.LENGTH_LONG).show();
-			Toast.makeText(getBaseContext(), event.getContactsString(),
+			Toast.makeText(getBaseContext(), "Contact String (1): " + event.getContactsString(),
 					Toast.LENGTH_LONG).show();
 			try {
 				Thread.sleep(100);
 			} catch (Exception e) {
 
 			}
-			// db.deleteEvent(event);
-			// db.addEvent(event);
+			 //db.deleteEvent(event);
+			 //db.addEvent(event);
 
-			db.updateEvent(event);
-
+			//int dbReturn = db.updateEvent(event);
+			
+			EventManager.addEvent(event);
+			
+			String dbReturn = db.updateEvent(event.getName());
+			
+			//Event eventT = db.getEvent(event.getID());
+			Event eventT = EventManager.getEvent(event.getName());
+			Toast.makeText(getBaseContext(), "Contact String (2): " + eventT.getContactsString() + " " + dbReturn,
+					Toast.LENGTH_LONG).show();
+			
 			// Toast.makeText(getBaseContext(), "UpDate",
 			// Toast.LENGTH_LONG).show();
 			// db.addAddress(new Address("He'll", null, null));
@@ -375,7 +385,7 @@ public class EventInfo extends Activity {
 		int secondsDiff = new Date(year, month, day, hour, minute).getMinutes()
 				- new Date().getMinutes();
 
-		Toast.makeText(getBaseContext(), Integer.toString(secondsDiff),
+		Toast.makeText(getBaseContext(), "Seconds Diff (1): " + Integer.toString(secondsDiff),
 				Toast.LENGTH_LONG).show();
 		try {
 			Thread.sleep(1000);
@@ -414,6 +424,7 @@ public class EventInfo extends Activity {
 		EditText eventDate = (EditText) findViewById(R.id.event_date);		
 		EditText eventStartAddress = (EditText) findViewById(R.id.start_address);
 		EditText eventAddress = (EditText) findViewById(R.id.event_address);
+		//EditText eventContacts = (EditText) findViewById(R.id.event_contacts);
 
 		Event event = new Event(eventName.getText().toString(), eventNotes
 				.getText().toString(), eventTime.getText().toString(),

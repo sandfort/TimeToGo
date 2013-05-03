@@ -23,7 +23,7 @@ public class SendMessage extends ListActivity{
 		
 	    setContentView(R.layout.activity_send_message);
 	    
-	    texts.add("Sample Text");
+	    texts.add("This is a test text from my CSC 380 application");
 	    
 	    if (texts == null) {
 			String[] textsStrings = new String[] { "No Texts"};
@@ -40,8 +40,26 @@ public class SendMessage extends ListActivity{
 				public void onItemClick(AdapterView<?>parent, View view, int position, long id){
 					String item = ((TextView)view).getText().toString();
 					
-					sendSMS("13158063563",item);
-					Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
+					
+					String eventName = getIntent().getStringExtra("Event Name");
+					Event event = EventManager.getEvent(eventName);
+					ArrayList<Contact> contacts = event.getContacts();
+					if(contacts != null) {
+						for(int i = 0; i < contacts.size(); ++i) {
+							Toast.makeText(getApplicationContext(), contacts.get(i).getName(), Toast.LENGTH_LONG).show();
+							try {
+							Thread.sleep(1000);
+							} catch (Exception e) {
+							
+							}
+							sendSMS("1"+contacts.get(i).getPhoneNumber(), item);
+						
+						}
+										
+					
+						//sendSMS("13158063563",item);
+						Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
+					}
 				}
 			};
 			listview.setOnItemClickListener(clicklistener);

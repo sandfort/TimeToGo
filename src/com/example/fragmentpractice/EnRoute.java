@@ -77,6 +77,7 @@ public class EnRoute extends Activity {
 
 	public void iWillBeLate(View view) {
 		Intent intent = new Intent(this, SendMessage.class);
+		intent.putExtra("Event Name", eventName);
 		startActivity(intent);
 	}
 

@@ -4,7 +4,7 @@ import android.provider.BaseColumns;
 
 public abstract class FeedEventEntry implements BaseColumns {
 	public static final String TABLE_NAME = "events";
-	public static final String EVENT_ID = "id";
+	public static final String EVENT_ID = "_id";
 	public static final String EVENT_NAME = "name";
 	public static final String EVENT_NOTE = "notes";
 	public static final String EVENT_TIME = "time";

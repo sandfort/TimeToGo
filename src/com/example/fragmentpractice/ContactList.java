@@ -165,6 +165,19 @@ public class ContactList extends ListActivity {
 	}
 
 	public static ArrayList<Contact> getContacts(String string) {
+		if (string != null) {
+			String[] contacts = string.split(";");
+			ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+			if (contacts == null) {
+				contactArrayList.add(ContactList.getContact(string));
+				return contactArrayList;
+			} else {
+				for (int i = 0; i < contacts.length; ++i) {
+					contactArrayList.add(ContactList.getContact(contacts[i]));
+				}
+				return contactArrayList;
+			}
+		}
 		return null;
 	}
 

@@ -105,11 +105,14 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		return events;
 	}
 
-	public int updateEvent(Event event) {
+	//public int updateEvent(Event event) {
+	public String updateEvent(String eventName) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
 
+		Event event = EventManager.getEvent(eventName);
+		
 		values.put(FeedEventEntry.EVENT_NAME, event.getName());
 		values.put(FeedEventEntry.EVENT_NOTE, event.getNotes());
 		values.put(FeedEventEntry.EVENT_TIME, event.getTime());
@@ -119,14 +122,16 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		values.put(FeedEventEntry.EVENT_CONTACTS, event.getContactsString());
 
 		int returnInt = db.update(FeedEventEntry.TABLE_NAME, values,
-				FeedEventEntry.EVENT_ID + " = ? ",
-				new String[] { String.valueOf(event.getID()) });
+				FeedEventEntry.EVENT_ID + " = ?",
+//				new String[] { String.valueOf(event.getID()) });
+				new String[] { Integer.toString(event.getID()) });
 		// this.close();
 		db.close();
 		// return db.update(FeedEventEntry.TABLE_NAME, values,
 		// FeedEventEntry._ID + " = ?",
 		// new String[] { String.valueOf(event.getID()) });
-		return returnInt;
+		//return returnInt;
+		return event.getContactsString();
 	}
 
 	public void deleteEvent(Event event) {
