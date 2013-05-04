@@ -472,12 +472,21 @@ public class EventInfo extends Activity {
 		long tTime = cal.getTimeInMillis();
 		
 		// If the user has NOT explicitly entered a guess for the travel time of this event...
+		float totalTime = 0;
 		if(eventTravelTime.getText().toString().equalsIgnoreCase("")) {
+			
+			Toast.makeText(getBaseContext(), "Database to get travel time: " + tTime,
+					Toast.LENGTH_LONG).show();
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+
+			}
 			
 			/* USE DATABASE TO GET PREVIOUS TRAVEL TIMES */
 			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
 			ArrayList<TravelTime> travelTimes = db.getAllTravelTime(eventStartAddress.getText().toString(), eventAddress.getText().toString());
-			float totalTime = 0;
+//			float totalTime = 0;
 			if (travelTimes.size() != 0) {
 				for (int i = 0; i < travelTimes.size(); ++i) {
 					totalTime = totalTime + travelTimes.get(i).getTravelTime();
@@ -491,7 +500,17 @@ public class EventInfo extends Activity {
 			
 			// Roll back the Calendar time by the travel time.
 			// NOTE: assuming totalTime is in seconds, therefore converting to milliseconds.
-			tTime -= (int) totalTime*1000;
+			//tTime -= (int) totalTime*1000;
+			tTime -= (long) totalTime;
+			
+			Toast.makeText(getBaseContext(), "Total time: " + (int) totalTime,
+					Toast.LENGTH_LONG).show();
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+
+			}
+			
 			
 		} else { // If the user HAS explicitly entered a travel time for this event...
 			/* SET ALARM BASED ON THIS TRAVEL TIME */
@@ -500,13 +519,22 @@ public class EventInfo extends Activity {
 			tTime -= 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
 		}
 		
+		
+		// Get another Calendar instance.
+		Calendar calCalc = Calendar.getInstance();
+		calCalc.add(Calendar.MILLISECOND, (int) totalTime);
+		
 		// Set up a pending intent to give the AlarmManager.
 		Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, event.getID(), alarmIntent, 0);
+//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, event.getID(), alarmIntent, 0);
+//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 12345, alarmIntent, 0);
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 12345, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 		
 		// Schedule the alarm.
 		AlarmManager am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
-		am.set(AlarmManager.RTC_WAKEUP, tTime, pendingIntent);
+		//am.set(AlarmManager.RTC_WAKEUP, tTime, pendingIntent);
+		am.set(AlarmManager.RTC_WAKEUP, calCalc.getTimeInMillis(), pendingIntent);
+		
 	}
 
 	@Override

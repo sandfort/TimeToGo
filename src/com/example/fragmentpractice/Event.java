@@ -80,9 +80,11 @@ public class Event {
 			String output = "";
 			for (int i = 0; i < contacts.size(); ++i) {
 				if (i == contacts.size() - 1) {
-					output = output + contacts.get(i).getName();
+					if(contacts.get(i) != null)
+						output = output + contacts.get(i).getName();
 				} else {
-					output = output + contacts.get(i).getName().trim() + "; ";
+					if(contacts.get(i) != null)
+						output = output + contacts.get(i).getName().trim() + "; ";
 				}
 			}
 			return output;
