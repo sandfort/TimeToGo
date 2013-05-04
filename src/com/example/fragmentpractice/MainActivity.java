@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends Activity {
+	public static AlarmScheduler alarmScheduler = new AlarmScheduler();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

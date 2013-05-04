@@ -1,9 +1,12 @@
 package com.example.fragmentpractice;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +20,7 @@ public class EventInfo extends Activity {
 	private String action = null;
 	private String eventName = null;
 	//private int alarmRequestCode = 0;
+	private Event event;
 
 	//ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
 	//ArrayList<AlarmManager> alarmManager = new ArrayList<AlarmManager>();
@@ -33,7 +37,7 @@ public class EventInfo extends Activity {
 		if (!action.equalsIgnoreCase("Create")) {
 
 			// Event event = EventManager.getEvent(action);
-			Event event = EventManager.getEvent(action);
+			event = EventManager.getEvent(action);
 			eventName = event.getName();
 			String eventNotes = event.getNotes();
 			String eventTime = event.getTime();
@@ -297,18 +301,20 @@ public class EventInfo extends Activity {
 			// }
 			int eventID = event.getID();
 			event = new Event(eventID, eventName.getText().toString(),
-					eventNotes.getText().toString(), eventTime.getText()
-							.toString(), eventDate.getText().toString(),
-							AddressBook.getAddress(eventStartAddress.getText().toString()),
-							AddressBook.getAddress(eventAddress.getText().toString()), contacts);
+					eventNotes.getText().toString(),
+					eventTime.getText().toString(),
+					eventDate.getText().toString(),
+					AddressBook.getAddress(eventStartAddress.getText().toString()),
+					AddressBook.getAddress(eventAddress.getText().toString()), contacts);
 			// event = new Event(eventID, eventName.getText().toString(),
 			// eventNotes.getText().toString(),
 			// eventTime.getText().toString(), eventDate.getText().toString(),
 			// AddressBook.getAddress(eventAddress.getText().toString()), null);
 		} else {
 
-			event = new Event(eventName.getText().toString(), eventNotes
-					.getText().toString(), eventTime.getText().toString(),
+			event = new Event(eventName.getText().toString(),
+					eventNotes.getText().toString(),
+					eventTime.getText().toString(),
 					eventDate.getText().toString(),
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
@@ -393,24 +399,6 @@ public class EventInfo extends Activity {
 
 		}
 
-		
-//		// cal.add(Calendar.SECOND, 5);
-//		cal.add(Calendar.MINUTE, secondsDiff);
-//		Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-//
-//		// PendingIntent pendingIntent = PendingIntent.getActivity(this,
-//		// 12345, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-//
-//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this,
-//				event.getID(), alarmIntent, 0);
-//
-//		AlarmManager am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
-//
-//		am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-//
-//		alarmManager.add(am);
-//
-//		intentArray.add(pendingIntent);
 		Intent intent = new Intent(this, EventManager.class);
 		// intent.putExtra("events", events);
 		startActivity(intent);
@@ -455,14 +443,38 @@ public class EventInfo extends Activity {
 	}
 
 	public void calculateNow(View view) {
-		//TODO get values from database
 		EditText eventStartAddress = (EditText) findViewById(R.id.start_address);
 		EditText eventAddress = (EditText) findViewById(R.id.event_address);
 		EditText eventTravelTime = (EditText) findViewById(R.id.travel_time_guess);
 		
+		// Get a Calendar instance.
+		Calendar cal = Calendar.getInstance();
+		
+		// Parse the fields for the date and time from the Event.
+		String[] monthInfo = event.getDate().split("/");
+		String[] timeInfo = event.getTime().split(":");
+		int month = Integer.parseInt(monthInfo[0]);
+		int day = Integer.parseInt(monthInfo[1]);
+		int year = Integer.parseInt(monthInfo[2]);
+		int hour = Integer.parseInt(timeInfo[0]);
+		if (timeInfo[1].substring(timeInfo.length - 2) != null && timeInfo[1].substring(timeInfo.length - 2).equalsIgnoreCase("pm"))
+			hour += 12;
+		int minute = Integer.parseInt(timeInfo[1].substring(0, timeInfo[1].length() - 2));
+	
+		// Set the fields in the Calendar.
+		cal.set(Calendar.MONTH, month);
+		cal.set(Calendar.DAY_OF_MONTH, day);
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.HOUR_OF_DAY, hour);
+		cal.set(Calendar.MINUTE, minute);
+		
+		// Get the Calendar time in the form of milliseconds since Epoch.
+		long tTime = cal.getTimeInMillis();
+		
+		// If the user has NOT explicitly entered a guess for the travel time of this event...
 		if(eventTravelTime.getText().toString().equalsIgnoreCase("")) {
 			
-			//USE DATABASE TO GET PREVIOUS TRAVEL TIMES
+			/* USE DATABASE TO GET PREVIOUS TRAVEL TIMES */
 			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
 			ArrayList<TravelTime> travelTimes = db.getAllTravelTime(eventStartAddress.getText().toString(), eventAddress.getText().toString());
 			float totalTime = 0;
@@ -475,11 +487,26 @@ public class EventInfo extends Activity {
 			Toast.makeText(getBaseContext(), Float.toString(totalTime),
 					Toast.LENGTH_LONG).show();
 			
-			//SET ALARM BASED ON THOSE
+			/* SET ALARM BASED ON THOSE */
 			
-		} else {
-			//SET ALARM BASED ON THIS TRAVEL TIME
+			// Roll back the Calendar time by the travel time.
+			// NOTE: assuming totalTime is in seconds, therefore converting to milliseconds.
+			tTime -= (int) totalTime*1000;
+			
+		} else { // If the user HAS explicitly entered a travel time for this event...
+			/* SET ALARM BASED ON THIS TRAVEL TIME */
+			
+			// NOTE: Assuming time is given in minutes.
+			tTime -= 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
 		}
+		
+		// Set up a pending intent to give the AlarmManager.
+		Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, event.getID(), alarmIntent, 0);
+		
+		// Schedule the alarm.
+		AlarmManager am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
+		am.set(AlarmManager.RTC_WAKEUP, tTime, pendingIntent);
 	}
 
 	@Override
