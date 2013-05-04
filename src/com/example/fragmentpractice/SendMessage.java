@@ -23,7 +23,9 @@ public class SendMessage extends ListActivity{
 		
 	    setContentView(R.layout.activity_send_message);
 	    
-	    texts.add("This is a test text from my CSC 380 application");
+	    //texts.add("This is a test text from my CSC 380 application");
+	    texts.add("I am going to be late");
+	    texts.add("I will no longer be attending");
 	    
 	    if (texts == null) {
 			String[] textsStrings = new String[] { "No Texts"};
@@ -55,9 +57,7 @@ public class SendMessage extends ListActivity{
 							sendSMS("1"+contacts.get(i).getPhoneNumber(), item);
 						
 						}
-										
-					
-						//sendSMS("13158063563",item);
+						
 						Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
 					}
 				}

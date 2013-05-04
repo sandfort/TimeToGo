@@ -1,7 +1,6 @@
 package com.example.fragmentpractice;
 
 public class Contact {
-	// public class Contact implements Parcelable{
 	private int _id;
 	private String name;
 	private String notes;
@@ -60,38 +59,4 @@ public class Contact {
 	public void editEmail(String email) {
 		this.email = email;
 	}
-
-	// @Override
-	// public void writeToParcel(Parcel dest, int flags) {
-	// dest.writeString(name);
-	// dest.writeString(notes);
-	// dest.writeString(phoneNumber);
-	// dest.writeString(email);
-	// }
-	//
-	// public static final Parcelable.Creator<Contact> CREATOR = new
-	// Parcelable.Creator<Contact>() {
-	// public Contact createFromParcel(Parcel in) {
-	// return new Contact(in);
-	// }
-	//
-	// public Contact[] newArray(int size) {
-	// return new Contact[size];
-	// }
-	// };
-	//
-	// public Contact(Parcel in) {
-	// name = in.readString();
-	// notes = in.readString();
-	// phoneNumber = in.readString();
-	// email = in.readString();
-	// }
-	//
-	//
-	// @Override
-	// public int describeContents() {
-	// // TODO Auto-generated method stub
-	// return 0;
-	// }
-
 }

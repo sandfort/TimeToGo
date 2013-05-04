@@ -50,8 +50,7 @@ public class AddressInfo extends Activity {
 
 		AddressDbHelper db = new AddressDbHelper(this);
 
-		Address address = AddressBook.getAddress(addressName.getText()
-				.toString());
+		Address address = AddressBook.getAddress(addressName.getText().toString());
 
 		if (address != null) {
 			// update address object with the information
@@ -65,24 +64,13 @@ public class AddressInfo extends Activity {
 					addressNotes.getText().toString(), addressLocation
 							.getText().toString());
 		}
-
-		// create an address object with the information
-		// Address address = new Address(addressName.getText().toString(),
-		// addressNotes.getText().toString(),
-		// addressLocation.getText().toString());
-
-		// make a database connection and add address to it
-		// AddressDbHelper db = new AddressDbHelper(this);
-
+		
 		if (action.equalsIgnoreCase("Create")) {
 			db.addAddress(address);
-			// db.addAddress(new Address("Hell", null, null));
 		} else {
-			// needs to be fixed
 			db.updateAddress(address);
-			// db.addAddress(new Address("He'll", null, null));
-			// db.addAddress(address);
 		}
+		
 		db.close();
 		// on clicking "Create"
 		// control is transfered back to the address book

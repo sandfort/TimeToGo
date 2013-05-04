@@ -7,7 +7,7 @@
 
     <Button android:text="@string/stop_alarm_button"
         android:id="@+id/stopAlarm"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent" />
     
 </LinearLayout>

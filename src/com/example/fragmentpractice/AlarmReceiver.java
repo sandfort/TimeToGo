@@ -24,8 +24,7 @@ public class AlarmReceiver extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_alarm_receiver);
 
 		Button stopAlarm = (Button) findViewById(R.id.stopAlarm);
@@ -44,15 +43,14 @@ public class AlarmReceiver extends Activity {
 		mMediaPlayer = new MediaPlayer();
 		try {
 			mMediaPlayer.setDataSource(context, alert);
-			final AudioManager audioManager = (AudioManager) context
-					.getSystemService(Context.AUDIO_SERVICE);
+			final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 			if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
 				mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
 				mMediaPlayer.prepare();
 				mMediaPlayer.start();
 			}
 		} catch (IOException e) {
-			System.out.println("OOPS");
+			System.out.println("Should not happen");
 		}
 	}
 
@@ -61,11 +59,9 @@ public class AlarmReceiver extends Activity {
 	private Uri getAlarmUri() {
 		Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 		if (alert == null) {
-			alert = RingtoneManager
-					.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+			alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 			if (alert == null) {
-				alert = RingtoneManager
-						.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+				alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 			}
 		}
 		return alert;

@@ -70,22 +70,10 @@ public class ContactInfo extends Activity {
 							.toString());
 		}
 
-		// create contact object with information
-		// Contact contact = new Contact(contactName.getText().toString(),
-		// contactNotes.getText().toString(), contactEmail.getText().toString(),
-		// contactPhoneNumber.getText().toString());
-
-		// make database connection and add contact to it
-		// ContactDbHelper db = new ContactDbHelper(this);
-
 		if (action.equalsIgnoreCase("Create")) {
 			db.addContact(contact);
 		} else {
 			db.updateContact(contact);
-			// Toast.makeText(getBaseContext(), "UpDate",
-			// Toast.LENGTH_LONG).show();
-			// db.addAddress(new Address("He'll", null, null));
-			// db.addAddress(address);
 		}
 		db.close();
 

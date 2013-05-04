@@ -94,27 +94,6 @@ public class TravelTimeDbHelper extends SQLiteOpenHelper {
 		return travelTimes;
 	}
 
-	
-//	public int updateAddress(Address address) {
-//		SQLiteDatabase db = this.getWritableDatabase();
-//
-//		ContentValues values = new ContentValues();
-//		values.put(FeedAddressEntry.ADDRESS_NAME, address.getName());
-//		values.put(FeedAddressEntry.ADDRESS_NOTE, address.getNotes());
-//		values.put(FeedAddressEntry.ADDRESS_LOCATION, address.getLocation());
-//
-//		return db.update(FeedAddressEntry.TABLE_NAME, values,
-//				FeedAddressEntry.ADDRESS_ID + " = ?",
-//				new String[] { String.valueOf(address.getID()) });
-//	}
-//
-//	public void deleteAddress(Address address) {
-//		SQLiteDatabase db = this.getWritableDatabase();
-//		db.delete(FeedAddressEntry.TABLE_NAME, FeedAddressEntry.ADDRESS_ID
-//				+ " = ?", new String[] { String.valueOf(address.getID()) });
-//		db.close();
-//	}
-
 	public String getName() {
 		return DATABASE_NAME;
 	}

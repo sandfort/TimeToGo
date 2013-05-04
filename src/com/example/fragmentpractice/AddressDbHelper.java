@@ -41,7 +41,7 @@ public class AddressDbHelper extends SQLiteOpenHelper {
 		onUpgrade(db, oldVersion, newVersion);
 	}
 
-	// add new contact to the db
+	// add new address to the db
 	public void addAddress(Address address) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();

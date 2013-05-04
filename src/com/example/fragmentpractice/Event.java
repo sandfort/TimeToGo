@@ -2,7 +2,6 @@ package com.example.fragmentpractice;
 
 import java.util.ArrayList;
 
-//public class Event implements Parcelable {
 public class Event {
 	private int _id;
 	private String name;
@@ -12,7 +11,6 @@ public class Event {
 	private Address startAddress;
 	private Address endAddress;
 	private ArrayList<Contact> contacts;
-	private Alarm alarm;
 
 	public Event(String name, String notes, String time, String date,
 			Address startAddress, Address endAddress, ArrayList<Contact> contacts) {
@@ -98,10 +96,6 @@ public class Event {
 
 	public ArrayList<Contact> getContacts() {
 		return contacts;
-	}
-
-	public Alarm getAlarm() {
-		return alarm;
 	}
 
 	public void editName(String name) {

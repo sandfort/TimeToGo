@@ -33,57 +33,30 @@ public class EventManager extends ListActivity {
 		EventDbHelper db = new EventDbHelper(this);
 		// get all addresses from address database
 		events = db.getAllEvents();
-		// String intentString = getIntent().getStringExtra("event");
-		// if(intentString != null && intentString.equalsIgnoreCase("quick")) {
-		// Intent intent = new Intent(this, AddressBook.class);
-		// intent.putExtra("EditOrSelect", "select");
-		// intent.putExtra("EventName", getIntent().getStringExtra("event"));
-		// Toast.makeText(getBaseContext(), getIntent().getStringExtra("event"),
-		// Toast.LENGTH_LONG).show();
-		// try {
-		// Thread.sleep(100);
-		// } catch (Exception e) {
-		//
-		// }
-		// startActivity(intent);
-		// }
 		// displays addresses or says that no addresses exist
 		if (events == null) {
 			String[] eventStrings = new String[] { "No Events" };
-			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout,
-					eventStrings));
+			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout,	eventStrings));
 		} else {
 			String[] eventStrings = new String[events.size()];
 			for (int i = 0; i < events.size(); ++i) {
 				eventStrings[i] = events.get(i).getName();
 			}
-			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout,
-					eventStrings));
+			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout, eventStrings));
 
 			ListView eventManager = (ListView) findViewById(android.R.id.list);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					R.layout.list_layout, eventStrings);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_layout, eventStrings);
 			eventManager.setAdapter(adapter);
 			eventManager.setOnItemClickListener(new OnItemClickListener() {
 				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					// String item = ((TextView)view).getText().toString();
-
-					// Toast.makeText(getBaseContext(), item,
-					// Toast.LENGTH_LONG).show();
-
-					Intent intent = new Intent(EventManager.this,
-							EventInfo.class);
-					intent.putExtra("Action", ((TextView) view).getText()
-							.toString());
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					Intent intent = new Intent(EventManager.this, EventInfo.class);
+					intent.putExtra("Action", ((TextView) view).getText().toString());
 					startActivity(intent);
-					// return true;
 				}
 			});
 		}
 		db.close();
-		// setContentView(R.layout.activity_event_manager);
 	}
 
 	@Override
@@ -92,11 +65,6 @@ public class EventManager extends ListActivity {
 		getMenuInflater().inflate(R.menu.activity_event_manager, menu);
 		return true;
 	}
-
-	// public void enterEventInfo(View view) {
-	// Intent intent = new Intent(this, EventInfo.class);
-	// startActivity(intent);
-	// }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -113,15 +81,10 @@ public class EventManager extends ListActivity {
 			this.resetNextEventID();
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
-			// return true;
 		} else if (choice == R.id.clear_travel_times_database) {
 			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
 			this.deleteDatabase(db.getName());
-			//events = db.getAllEvents();
 			this.resetNextTravelTimeID();
-			//Intent intent = new Intent(this, MainActivity.class);
-			//startActivity(intent);
-			// return true;
 		} 
 		
 		

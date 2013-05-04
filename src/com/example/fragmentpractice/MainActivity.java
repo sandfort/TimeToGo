@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends Activity {
-	public static AlarmScheduler alarmScheduler = new AlarmScheduler();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +32,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		// write to database?
-
 	}
 
 	public void showEventManager(View view) {
@@ -43,8 +40,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void showUserPrefs(View view) {
-		// SHOW USER PREFS
-		// WEEK TWO GOAL
+		Intent intent = new Intent(this, UserPrefs.class);
+		startActivity(intent);
 	}
 
 	public void showAddressBook(View view) {

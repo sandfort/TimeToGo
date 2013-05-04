@@ -5,7 +5,6 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.DigitalClock;
@@ -61,17 +60,13 @@ public class EnRoute extends Activity {
 			Event event = EventManager.getEvent(eventName);
 			
 			TravelTime travelTime = new TravelTime(event.getStartAddress(), event.getEndAddress(), totalTime);
-			
-			//TextView eventTime = (TextView) findViewById(R.id.en_route_event_time);
-			//eventTime.setTextSize(50);
-			//eventTime.setText(totalTime.toString());
+
 			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
 			db.addTravelTime(travelTime);
 			EventDbHelper dbEvent = new EventDbHelper(this);
 			dbEvent.deleteEvent(event);
 		} else {
-			Toast.makeText(getBaseContext(), "Timing Never Started",
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), "Timing Never Started", Toast.LENGTH_LONG).show();
 		}
 	}
 

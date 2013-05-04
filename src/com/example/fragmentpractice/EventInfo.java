@@ -345,11 +345,11 @@ public class EventInfo extends Activity {
 			 //db.deleteEvent(event);
 			 //db.addEvent(event);
 
-			//int dbReturn = db.updateEvent(event);
 			
 			EventManager.addEvent(event);
 			
-			String dbReturn = db.updateEvent(event.getName());
+			int dbReturn = db.updateEvent(event);
+			//String dbReturn = db.updateEvent(event.getName());
 			
 			//Event eventT = db.getEvent(event.getID());
 			Event eventT = EventManager.getEvent(event.getName());

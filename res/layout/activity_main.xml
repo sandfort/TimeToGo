@@ -6,42 +6,46 @@
 
     <Button
         android:id="@+id/time_me"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:ems="20"
         android:onClick="showEventManager"
         android:text="@string/event_manager_button" />
 
     <Button
-        android:id="@+id/event_start_address_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/time_me"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:onClick="showUserPrefs"
-        android:text="@string/user_prefs_button" />
-
-    <Button
         android:id="@+id/Button02"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/time_me"
-        android:layout_below="@+id/event_start_address_button"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/time_me"
+        android:layout_marginTop="50dp"
+        android:ems="20"
         android:onClick="showAddressBook"
         android:text="@string/address_book_button" />
 
     <Button
         android:id="@+id/Button03"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/Button02"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="50dp"
+        android:ems="20"
         android:onClick="showContactList"
         android:text="@string/contact_list_button" />
+
+    <Button
+        android:id="@+id/event_start_address_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button03"
+        android:layout_marginTop="50dp"
+        android:ems="20"
+        android:onClick="showUserPrefs"
+        android:text="@string/user_prefs_button" />
 
 </RelativeLayout>
