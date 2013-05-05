@@ -48,14 +48,15 @@ public class SendMessage extends ListActivity{
 					ArrayList<Contact> contacts = event.getContacts();
 					if(contacts != null) {
 						for(int i = 0; i < contacts.size(); ++i) {
-							Toast.makeText(getApplicationContext(), contacts.get(i).getName(), Toast.LENGTH_LONG).show();
+							//Toast.makeText(getApplicationContext(), contacts.get(i).getName(), Toast.LENGTH_LONG).show();
 							try {
 							Thread.sleep(1000);
 							} catch (Exception e) {
 							
 							}
-							sendSMS("1"+contacts.get(i).getPhoneNumber(), item);
-						
+							if(contacts.get(i) != null) {
+								sendSMS("1"+contacts.get(i).getPhoneNumber(), item);
+							}
 						}
 						
 						Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
