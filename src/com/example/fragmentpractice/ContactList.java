@@ -74,6 +74,10 @@ public class ContactList extends ListActivity {
 						event.addContact(ContactList
 								.getContact(((TextView) view).getText()
 										.toString()));
+						EventDbHelper dbEvent = new EventDbHelper(ContactList.this);
+						//dbEvent.updateEvent(event);
+						dbEvent.updateEvent(event.getName());
+						dbEvent.close();
 						Intent intent = new Intent(ContactList.this,
 								EventInfo.class);
 						intent.putExtra("ContactName", ((TextView) view)
@@ -82,6 +86,7 @@ public class ContactList extends ListActivity {
 						startActivity(intent);
 					}
 				});
+				
 			}
 		}
 	}

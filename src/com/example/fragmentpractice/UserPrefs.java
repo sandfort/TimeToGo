@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class UserPrefs extends Activity {
 
-	private int alarmVal = 0;
+	private static int alarmVal = 0;
 	private String qtTitle = "Manage Quick Texts";
 	private String aTitle = "Set Alarm Thing";
 	private ArrayList<String> prefOptions = new ArrayList<String>();
@@ -81,7 +81,7 @@ public class UserPrefs extends Activity {
 		startActivity(intent);
 	}
 
-	public int getAlarmVal() {
+	public static int getAlarmVal() {
 		return alarmVal;
 	}
 }

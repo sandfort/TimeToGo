@@ -45,7 +45,7 @@ public class EventInfo extends Activity {
 			String eventStartAddress = event.getStartAddressName();
 			String eventEndAddress = event.getEndAddressName();
 			String eventContacts = event.getContactsString();
-
+		
 			EditText eventNameEdit = (EditText) findViewById(R.id.event_name);
 			EditText eventNotesEdit = (EditText) findViewById(R.id.event_notes);
 			EditText eventTimeEdit = (EditText) findViewById(R.id.event_time);
@@ -61,6 +61,25 @@ public class EventInfo extends Activity {
 			eventStartAddressEdit.setText(eventStartAddress);
 			eventAddressEdit.setText(eventEndAddress);
 			eventContactsEdit.setText(eventContacts);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+
+			}
+			
+			ArrayList<Contact> contacts = event.getContacts();
+			for(int i = 0; i < contacts.size(); ++i) {
+				Toast.makeText(getBaseContext(), 
+						//contacts.get(i).toString(),
+						Integer.toString(i),
+						Toast.LENGTH_LONG).show();
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+
+				}
+			}
 		}
 
 	}
@@ -129,7 +148,8 @@ public class EventInfo extends Activity {
 					eventDate.getText().toString(),
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
-					contacts);
+					//contacts);
+					ContactList.getContacts(eventContacts.getText().toString()));
 			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
 					Toast.LENGTH_LONG).show();
 			try {
@@ -165,15 +185,6 @@ public class EventInfo extends Activity {
 			EditText eventAddress = (EditText) findViewById(R.id.event_address);
 			EditText eventContacts = (EditText) findViewById(R.id.event_contacts);
 
-			// Toast.makeText(getBaseContext(),
-			// Boolean.toString(eventContacts.getText().toString().equalsIgnoreCase("")),
-			// Toast.LENGTH_LONG).show();
-			// try {
-			// Thread.sleep(1000);
-			// } catch (Exception e) {
-
-			// }
-
 			ArrayList<Contact> contacts = null;
 			if (!eventContacts.getText().toString().equalsIgnoreCase("")
 					&& !eventContacts.getText().toString().equalsIgnoreCase("none")) {
@@ -184,33 +195,15 @@ public class EventInfo extends Activity {
 					contacts.add(ContactList.getContact(contactStrings[i]));
 				}
 			}
-			// if(eventContacts != null) {
-			// contacts = new ArrayList<Contact>();
-			// String[] contactStrings =
-			// eventContacts.getText().toString().split(";");
-			// Toast.makeText(getBaseContext(),
-			// Integer.toString(contactStrings.length),
-			// Toast.LENGTH_LONG).show();
-			// try {
-			// Thread.sleep(1000);
-			// } catch (Exception e) {
-			//
-			// }
-			//
-			// for(int i = 0; i < contactStrings.length; ++i) {
-			// contacts.add(ContactList.getContact(contactStrings[i]));
-			// }
-			// }
 
-			// make a database connection
-			//***********************************************
 			EventDbHelper db = new EventDbHelper(this);
 			Event event = new Event(eventName.getText().toString(), eventNotes
 					.getText().toString(), eventTime.getText().toString(),
 					eventDate.getText().toString(),
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
-					contacts);
+					//contacts);
+					ContactList.getContacts(eventContacts.getText().toString()));
 			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
 					Toast.LENGTH_LONG).show();
 			try {
@@ -261,14 +254,19 @@ public class EventInfo extends Activity {
 
 			for (int i = 0; i < contactStrings.length; ++i) {
 				contacts.add(ContactList.getContact(contactStrings[i]));
-				Toast.makeText(getBaseContext(), "Contact Name (1): " + contacts.get(i).getName(),
+				
+				//*********
+				Toast.makeText(getBaseContext(), "Contact Name (" + i + "): " + contacts.get(i).getName(),
 						Toast.LENGTH_LONG).show();
 				try {
 					Thread.sleep(100);
 				} catch (Exception e) {
 
 				}
+				//*********
 			}
+		} else {
+			
 		}
 
 		// make a database connection
@@ -277,41 +275,17 @@ public class EventInfo extends Activity {
 		// create an event object with the information
 		Event event = EventManager.getEvent(eventName.getText().toString());
 
-		// Toast.makeText(getBaseContext(), "BEFORE", Toast.LENGTH_LONG).show();
-
-		// Toast.makeText(getBaseContext(), Boolean.toString(contacts == null),
-		// Toast.LENGTH_LONG).show();
-
-		// Toast.makeText(getBaseContext(), "CONTACTS: " +
-		// event.getContactsString(), Toast.LENGTH_LONG).show();
-
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-
-		}
-
 		if (event != null) {
-			// Toast.makeText(getBaseContext(), event.getContactsString(),
-			// Toast.LENGTH_LONG).show();
-			// try {
-			// Thread.sleep(100);
-			// } catch (Exception e) {
-			//
-			// }
 			int eventID = event.getID();
 			event = new Event(eventID, eventName.getText().toString(),
 					eventNotes.getText().toString(),
 					eventTime.getText().toString(),
 					eventDate.getText().toString(),
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
-					AddressBook.getAddress(eventAddress.getText().toString()), contacts);
-			// event = new Event(eventID, eventName.getText().toString(),
-			// eventNotes.getText().toString(),
-			// eventTime.getText().toString(), eventDate.getText().toString(),
-			// AddressBook.getAddress(eventAddress.getText().toString()), null);
+					AddressBook.getAddress(eventAddress.getText().toString()), 
+					contacts);
+					//ContactList.getContacts(eventContacts.getText().toString()));
 		} else {
-
 			event = new Event(eventName.getText().toString(),
 					eventNotes.getText().toString(),
 					eventTime.getText().toString(),
@@ -319,22 +293,16 @@ public class EventInfo extends Activity {
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
 					contacts);
-			// event = new Event(eventName.getText().toString(),
-			// eventNotes.getText().toString(),
-			// eventTime.getText().toString(), eventDate.getText().toString(),
-			// AddressBook.getAddress(eventAddress.getText().toString()), null);
+					//ContactList.getContacts(eventContacts.getText().toString()));
 		}
 
 		// add address to database
 		if (action.equalsIgnoreCase("Create")) {
 			db.addEvent(event);
-			// Toast.makeText(getBaseContext(), "Create",
-			// Toast.LENGTH_LONG).show();
-			// db.addEvent(new Address("Hell", null, null));
 		} else {
-			// needs to be fixed
-			// Toast.makeText(getBaseContext(), Integer.toString(event.getID())
-			// , Toast.LENGTH_LONG).show();
+			//db.updateEvent(event);
+			String returnE = db.updateEvent(event.getName());
+			//*********
 			Toast.makeText(getBaseContext(), "Contact String (1): " + event.getContactsString(),
 					Toast.LENGTH_LONG).show();
 			try {
@@ -342,65 +310,29 @@ public class EventInfo extends Activity {
 			} catch (Exception e) {
 
 			}
-			 //db.deleteEvent(event);
-			 //db.addEvent(event);
+		
+			Toast.makeText(getBaseContext(), "Contact Return (1): " + returnE,
+					Toast.LENGTH_LONG).show();
+			try {
+				Thread.sleep(100);
+			} catch (Exception e) {
 
+			}
 			
-			EventManager.addEvent(event);
+			//EventManager.addEvent(event);
 			
-			int dbReturn = db.updateEvent(event);
-			//String dbReturn = db.updateEvent(event.getName());
-			
-			//Event eventT = db.getEvent(event.getID());
-			Event eventT = EventManager.getEvent(event.getName());
-			Toast.makeText(getBaseContext(), "Contact String (2): " + eventT.getContactsString() + " " + dbReturn,
+			//db.updateEvent(event);
+
+			//Event eventT = EventManager.getEvent(event.getName());
+			Event eventT = db.getEvent(event.getID());
+			Toast.makeText(getBaseContext(), "Contact String (2): " + eventT.getContactsString(),
 					Toast.LENGTH_LONG).show();
 			
-			// Toast.makeText(getBaseContext(), "UpDate",
-			// Toast.LENGTH_LONG).show();
-			// db.addAddress(new Address("He'll", null, null));
-			// db.addAddress(address);
-		}
-
-		//Toast.makeText(getBaseContext(),
-		//		db.getEvent(event.getID()).getContactsString(),
-		//		Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(100);
-		} catch (Exception e) {
-
 		}
 
 		db.close();
 
-		//Calendar cal = Calendar.getInstance();
-		String[] monthInfo = event.getDate().split("/");
-		String[] timeInfo = event.getTime().split(":");
-		int month = Integer.parseInt(monthInfo[0]);
-		int day = Integer.parseInt(monthInfo[1]);
-		int year = Integer.parseInt(monthInfo[2]);
-		int hour = Integer.parseInt(timeInfo[0]);
-		if (timeInfo[1].substring(timeInfo.length - 2) != null && timeInfo[1].substring(timeInfo.length - 2).equalsIgnoreCase("pm")) {
-			hour += 12;
-		}
-		int minute = Integer.parseInt(timeInfo[1].substring(0,
-				timeInfo[1].length() - 2));
-
-		@SuppressWarnings("deprecation")
-		// int secondsDiff = this.date.getSeconds() - Calendar.SECOND;
-		int secondsDiff = new Date(year, month, day, hour, minute).getMinutes()
-				- new Date().getMinutes();
-
-		Toast.makeText(getBaseContext(), "Seconds Diff (1): " + Integer.toString(secondsDiff),
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-
-		}
-
 		Intent intent = new Intent(this, EventManager.class);
-		// intent.putExtra("events", events);
 		startActivity(intent);
 	}
 
@@ -412,29 +344,23 @@ public class EventInfo extends Activity {
 		EditText eventDate = (EditText) findViewById(R.id.event_date);		
 		EditText eventStartAddress = (EditText) findViewById(R.id.start_address);
 		EditText eventAddress = (EditText) findViewById(R.id.event_address);
-		//EditText eventContacts = (EditText) findViewById(R.id.event_contacts);
+		EditText eventContacts = (EditText) findViewById(R.id.event_contacts);
 
 		Event event = new Event(eventName.getText().toString(), eventNotes
 				.getText().toString(), eventTime.getText().toString(),
 				eventDate.getText().toString(),
 				AddressBook.getAddress(eventStartAddress.getText().toString()),
-				AddressBook.getAddress(eventAddress.getText().toString()), null);
-
+				AddressBook.getAddress(eventAddress.getText().toString()), 
+				//null);
+				ContactList.getContacts(eventContacts.getText().toString()));
+				
 		// make a database connection and add address to it
 		EventDbHelper db = new EventDbHelper(this);
 
 		if (action.equalsIgnoreCase("Create")) {
 			db.addEvent(event);
-			// db.addEvent(new Address("Hell", null, null));
-		} else {
-			// needs to be fixed
-			
-			//db.deleteEvent(event); ******
-			
-			// db.addAddress(new Address("He'll", null, null));
-			// db.addAddress(address);
-		}
-
+		} 
+	
 		Intent intent = new Intent(this, EnRoute.class);
 		intent.putExtra("Event Time", eventTime.getText().toString());
 		intent.putExtra("Event Name", eventName.getText().toString());
@@ -442,13 +368,16 @@ public class EventInfo extends Activity {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public void calculateNow(View view) {
 		EditText eventStartAddress = (EditText) findViewById(R.id.start_address);
 		EditText eventAddress = (EditText) findViewById(R.id.event_address);
 		EditText eventTravelTime = (EditText) findViewById(R.id.travel_time_guess);
 		
+		
+		
 		// Get a Calendar instance.
-		Calendar cal = Calendar.getInstance();
+		//Calendar cal = Calendar.getInstance();
 		
 		// Parse the fields for the date and time from the Event.
 		String[] monthInfo = event.getDate().split("/");
@@ -457,32 +386,33 @@ public class EventInfo extends Activity {
 		int day = Integer.parseInt(monthInfo[1]);
 		int year = Integer.parseInt(monthInfo[2]);
 		int hour = Integer.parseInt(timeInfo[0]);
-		if (timeInfo[1].substring(timeInfo.length - 2) != null && timeInfo[1].substring(timeInfo.length - 2).equalsIgnoreCase("pm"))
+		int minute = 0;
+		if (timeInfo[1].substring(timeInfo.length - 2) != null && timeInfo[1].substring(timeInfo[1].length() - 2).equalsIgnoreCase("pm")) {
 			hour += 12;
-		int minute = Integer.parseInt(timeInfo[1].substring(0, timeInfo[1].length() - 2));
-	
-		// Set the fields in the Calendar.
-		cal.set(Calendar.MONTH, month);
-		cal.set(Calendar.DAY_OF_MONTH, day);
-		cal.set(Calendar.YEAR, year);
-		cal.set(Calendar.HOUR_OF_DAY, hour);
-		cal.set(Calendar.MINUTE, minute);
+			minute = Integer.parseInt(timeInfo[1].substring(0, timeInfo[1].length() - 2));
+		} else {
+			minute = Integer.parseInt(timeInfo[1]);
+		}
 		
-		// Get the Calendar time in the form of milliseconds since Epoch.
-		long tTime = cal.getTimeInMillis();
+		int tTime = 60*1000*(new Date(year, month, day, hour, minute).getMinutes()
+				- new Date().getMinutes());
+		
+		tTime = tTime + 24*60*60*1000*(day - new Date().getDate());
+		
+		
+		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
+				Toast.LENGTH_LONG).show();
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+
+		}
+				
 		
 		// If the user has NOT explicitly entered a guess for the travel time of this event...
 		float totalTime = 0;
 		if(eventTravelTime.getText().toString().equalsIgnoreCase("")) {
-			
-			Toast.makeText(getBaseContext(), "Database to get travel time: " + tTime,
-					Toast.LENGTH_LONG).show();
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-
-			}
-			
+				
 			/* USE DATABASE TO GET PREVIOUS TRAVEL TIMES */
 			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
 			ArrayList<TravelTime> travelTimes = db.getAllTravelTime(eventStartAddress.getText().toString(), eventAddress.getText().toString());
@@ -493,6 +423,7 @@ public class EventInfo extends Activity {
 				}
 				totalTime = totalTime / travelTimes.size();
 			}
+			
 			Toast.makeText(getBaseContext(), Float.toString(totalTime),
 					Toast.LENGTH_LONG).show();
 			
@@ -501,7 +432,7 @@ public class EventInfo extends Activity {
 			// Roll back the Calendar time by the travel time.
 			// NOTE: assuming totalTime is in seconds, therefore converting to milliseconds.
 			//tTime -= (int) totalTime*1000;
-			tTime -= (long) totalTime;
+			//tTime -= (long) totalTime;
 			
 			Toast.makeText(getBaseContext(), "Total time: " + (int) totalTime,
 					Toast.LENGTH_LONG).show();
@@ -516,23 +447,75 @@ public class EventInfo extends Activity {
 			/* SET ALARM BASED ON THIS TRAVEL TIME */
 			
 			// NOTE: Assuming time is given in minutes.
-			tTime -= 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
+			//tTime -= 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
+			totalTime = 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
 		}
 		
+		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
+				Toast.LENGTH_LONG).show();
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+
+		}
+				
+		Toast.makeText(getBaseContext(), "Time Until Event: " + Integer.toString(tTime),
+				Toast.LENGTH_LONG).show();
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+
+		}
+		
+		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
+				Toast.LENGTH_LONG).show();
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+
+		}
+		
+		Toast.makeText(getBaseContext(), "Travel Time: " + Float.toString(totalTime),
+				Toast.LENGTH_LONG).show();
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+
+		}
+
 		
 		// Get another Calendar instance.
 		Calendar calCalc = Calendar.getInstance();
-		calCalc.add(Calendar.MILLISECOND, (int) totalTime);
+		//calCalc.setTime(new Date());
+		//calCalc.set(Calendar.DAY_OF_YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, Calendar.HOUR_OF_DAY, Calendar.MINUTE);
+		
+//		Toast.makeText(getBaseContext(), "Now Time: " + Float.toString(calCalc.getTimeInMillis()),
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(2000);
+//		} catch (Exception e) {
+//
+//		}
+		
+		Toast.makeText(getBaseContext(), "Time Until Alarm: " + Float.toString(tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())),
+				Toast.LENGTH_LONG).show();
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+
+		}
+
+		
+		//calCalc.add(Calendar.MILLISECOND, (int) totalTime);
+		calCalc.add(Calendar.MILLISECOND, (int) (tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())));
+
 		
 		// Set up a pending intent to give the AlarmManager.
 		Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, event.getID(), alarmIntent, 0);
-//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 12345, alarmIntent, 0);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 12345, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 		
 		// Schedule the alarm.
 		AlarmManager am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
-		//am.set(AlarmManager.RTC_WAKEUP, tTime, pendingIntent);
 		am.set(AlarmManager.RTC_WAKEUP, calCalc.getTimeInMillis(), pendingIntent);
 		
 	}

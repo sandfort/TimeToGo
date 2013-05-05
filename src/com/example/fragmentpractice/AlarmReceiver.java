@@ -46,6 +46,9 @@ public class AlarmReceiver extends Activity {
 			final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 			if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
 				mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+				//*****
+				mMediaPlayer.setVolume(0, 0);
+				//*****
 				mMediaPlayer.prepare();
 				mMediaPlayer.start();
 			}
