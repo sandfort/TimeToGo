@@ -526,5 +526,13 @@ public class EventInfo extends Activity {
 		startActivity(intent);
 		return;
 	}
+	
+	public void deleteEvent(View view) {
+		EventManager.getEvents().remove(event);
+		EventDbHelper db = new EventDbHelper(this);
+		db.deleteEvent(event);
+		Intent intent = new Intent(this, EventManager.class);
+		startActivity(intent);
+	}
 
 }

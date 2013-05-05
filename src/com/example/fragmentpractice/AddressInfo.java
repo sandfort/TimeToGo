@@ -10,6 +10,7 @@ import android.widget.EditText;
 public class AddressInfo extends Activity {
 
 	private String action = null;
+	private Address address = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class AddressInfo extends Activity {
 			addressNotesEdit.setText(addressNotes);
 			addressLocationEdit.setText(addressLocation);
 		}
+		address = AddressBook.getAddress(action);
 	}
 
 	@Override
@@ -74,6 +76,15 @@ public class AddressInfo extends Activity {
 		db.close();
 		// on clicking "Create"
 		// control is transfered back to the address book
+		Intent intent = new Intent(this, AddressBook.class);
+		intent.putExtra("EditOrSelect", "edit");
+		startActivity(intent);
+	}
+	
+	public void deleteAddress(View view) {
+		AddressBook.getAddressBook().removeAddress(address);
+		AddressDbHelper db = new AddressDbHelper(this);
+		db.deleteAddress(address);
 		Intent intent = new Intent(this, AddressBook.class);
 		intent.putExtra("EditOrSelect", "edit");
 		startActivity(intent);

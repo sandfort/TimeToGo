@@ -11,6 +11,7 @@ public class ContactInfo extends Activity {
 
 	// private ArrayList<Contact> contacts = new ArrayList<Contact>();
 	private String action = null;
+	private Contact contact = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,10 @@ public class ContactInfo extends Activity {
 			contactNotesEdit.setText(contactNotes);
 			contactEmailEdit.setText(contactEmail);
 			contactPhoneNumberEdit.setText(contactPhoneNumber);
+			
+			
 		}
+		contact = ContactList.getContact(action);
 
 	}
 
@@ -79,6 +83,15 @@ public class ContactInfo extends Activity {
 
 		// on clicking "Create"
 		// control is transfered back to the contact list
+		Intent intent = new Intent(this, ContactList.class);
+		intent.putExtra("EditOrSelect", "edit");
+		startActivity(intent);
+	}
+	
+	public void deleteContact(View view) {
+		ContactList.getContactList().removeContact(contact);
+		ContactDbHelper db = new ContactDbHelper(this);
+		db.deleteContact(contact);
 		Intent intent = new Intent(this, ContactList.class);
 		intent.putExtra("EditOrSelect", "edit");
 		startActivity(intent);

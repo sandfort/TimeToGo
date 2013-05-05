@@ -129,6 +129,14 @@
             android:layout_height="wrap_content"
             android:onClick="createEvent"
             android:text="@string/create_button" />
+
+        <Button
+            android:id="@+id/remove_event"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="deleteEvent"
+            android:text="@string/delete_button" />
+
     </LinearLayout>
 
 </ScrollView>
