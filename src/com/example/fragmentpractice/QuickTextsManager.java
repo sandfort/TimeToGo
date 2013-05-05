@@ -21,7 +21,6 @@ public class QuickTextsManager extends ListActivity {
 
 	private ArrayList<String> texts = new ArrayList<String>();
 	private ListView listview;
-	// private ArrayAdapter<String> adapter;
 	private AdapterView.OnItemClickListener clicklistener;
 
 	@Override

@@ -24,8 +24,6 @@ public class EventManager extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Intent intent = getIntent();
-		// events = intent.getParcelableArrayListExtra("events");
 
 		// show event manager
 		setContentView(R.layout.activity_event_manager);
@@ -73,7 +71,6 @@ public class EventManager extends ListActivity {
 			Intent intent = new Intent(this, EventInfo.class);
 			intent.putExtra("Action", "Create");
 			startActivity(intent);
-			// return true;
 		} else if (choice == R.id.clear_events_database) {
 			EventDbHelper db = new EventDbHelper(this);
 			this.deleteDatabase(db.getName());

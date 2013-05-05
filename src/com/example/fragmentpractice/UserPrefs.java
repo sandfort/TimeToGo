@@ -18,7 +18,7 @@ public class UserPrefs extends Activity {
 
 	private static int alarmVal = 0;
 	private String qtTitle = "Manage Quick Texts";
-	private String aTitle = "Set Alarm Thing";
+	private String aTitle = "Set Time Before Leave";
 	private ArrayList<String> prefOptions = new ArrayList<String>();
 	private AdapterView.OnItemClickListener clickListener;
 	private ListView listview;

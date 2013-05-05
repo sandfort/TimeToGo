@@ -75,8 +75,7 @@ public class ContactList extends ListActivity {
 								.getContact(((TextView) view).getText()
 										.toString()));
 						EventDbHelper dbEvent = new EventDbHelper(ContactList.this);
-						//dbEvent.updateEvent(event);
-						dbEvent.updateEvent(event.getName());
+						dbEvent.updateEvent(event);
 						dbEvent.close();
 						Intent intent = new Intent(ContactList.this,
 								EventInfo.class);

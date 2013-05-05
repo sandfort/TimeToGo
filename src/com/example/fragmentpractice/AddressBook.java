@@ -73,12 +73,6 @@ public class AddressBook extends ListActivity {
 						Event event = EventManager.getEvent(eventName);
 						Address address = AddressBook.getAddress(((TextView) view).getText().toString());
 						
-//						if (event == null) {
-//							Toast.makeText(getBaseContext(), "NULL",Toast.LENGTH_LONG).show();
-//						} else {
-//							event.editStartAddess(address);
-//						}
-
 						if(event != null) {
 							event.editStartAddess(address);
 						}
@@ -102,13 +96,6 @@ public class AddressBook extends ListActivity {
 						String eventName = eventIntent.getStringExtra("EventName");
 						Event event = EventManager.getEvent(eventName);
 						Address address = AddressBook.getAddress(((TextView) view).getText().toString());
-						
-//						if (event == null) {
-//							Toast.makeText(getBaseContext(), "NULL",
-//									Toast.LENGTH_LONG).show();
-//						} else {
-//							event.editEndAddess(address);
-//						}
 						
 						if(event != null) {
 							event.editEndAddess(address);

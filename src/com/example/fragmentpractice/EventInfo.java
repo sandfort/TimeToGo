@@ -12,18 +12,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class EventInfo extends Activity {
 
-	// private ArrayList<Event> events = new ArrayList<Event>();
 	private String action = null;
 	private String eventName = null;
-	//private int alarmRequestCode = 0;
 	private Event event;
 
-	//ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
-	//ArrayList<AlarmManager> alarmManager = new ArrayList<AlarmManager>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +31,6 @@ public class EventInfo extends Activity {
 		}
 		if (!action.equalsIgnoreCase("Create")) {
 
-			// Event event = EventManager.getEvent(action);
 			event = EventManager.getEvent(action);
 			eventName = event.getName();
 			String eventNotes = event.getNotes();
@@ -62,24 +56,26 @@ public class EventInfo extends Activity {
 			eventAddressEdit.setText(eventEndAddress);
 			eventContactsEdit.setText(eventContacts);
 			
-			try {
-				Thread.sleep(1000);
-			} catch (Exception e) {
-
-			}
+//			try {
+//				Thread.sleep(1000);
+//			} catch (Exception e) {
+//
+//			}
+//			
+//			ArrayList<Contact> contacts = event.getContacts();
+//			
+//			for(int i = 0; i < contacts.size(); ++i) {
+//				Toast.makeText(getBaseContext(), 
+//						//contacts.get(i).toString(),
+//						Integer.toString(i),
+//						Toast.LENGTH_LONG).show();
+//				try {
+//					Thread.sleep(500);
+//				} catch (Exception e) {
+//
+//				}
+//			}
 			
-			ArrayList<Contact> contacts = event.getContacts();
-			for(int i = 0; i < contacts.size(); ++i) {
-				Toast.makeText(getBaseContext(), 
-						//contacts.get(i).toString(),
-						Integer.toString(i),
-						Toast.LENGTH_LONG).show();
-				try {
-					Thread.sleep(500);
-				} catch (Exception e) {
-
-				}
-			}
 		}
 
 	}
@@ -150,13 +146,17 @@ public class EventInfo extends Activity {
 					AddressBook.getAddress(eventAddress.getText().toString()),
 					//contacts);
 					ContactList.getContacts(eventContacts.getText().toString()));
-			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
-					Toast.LENGTH_LONG).show();
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-
-			}
+			
+			
+//			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
+//					Toast.LENGTH_LONG).show();
+//			try {
+//				Thread.sleep(100);
+//			} catch (Exception e) {
+//
+//			}
+			
+			
 			db.addEvent(event);
 			db.close();
 			this.eventName = event.getName();
@@ -204,13 +204,17 @@ public class EventInfo extends Activity {
 					AddressBook.getAddress(eventAddress.getText().toString()),
 					//contacts);
 					ContactList.getContacts(eventContacts.getText().toString()));
-			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
-					Toast.LENGTH_LONG).show();
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-
-			}
+			
+			
+//			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
+//					Toast.LENGTH_LONG).show();
+//			try {
+//				Thread.sleep(100);
+//			} catch (Exception e) {
+//
+//			}
+			
+			
 			db.addEvent(event);
 			db.close();
 			this.eventName = event.getName();
@@ -255,15 +259,15 @@ public class EventInfo extends Activity {
 			for (int i = 0; i < contactStrings.length; ++i) {
 				contacts.add(ContactList.getContact(contactStrings[i]));
 				
-				//*********
-				Toast.makeText(getBaseContext(), "Contact Name (" + i + "): " + contacts.get(i).getName(),
-						Toast.LENGTH_LONG).show();
-				try {
-					Thread.sleep(100);
-				} catch (Exception e) {
-
-				}
-				//*********
+//				//*********
+//				Toast.makeText(getBaseContext(), "Contact Name (" + i + "): " + contacts.get(i).getName(),
+//						Toast.LENGTH_LONG).show();
+//				try {
+//					Thread.sleep(100);
+//				} catch (Exception e) {
+//
+//				}
+//				//*********
 			}
 		} else {
 			
@@ -300,33 +304,34 @@ public class EventInfo extends Activity {
 		if (action.equalsIgnoreCase("Create")) {
 			db.addEvent(event);
 		} else {
-			//db.updateEvent(event);
-			String returnE = db.updateEvent(event.getName());
-			//*********
-			Toast.makeText(getBaseContext(), "Contact String (1): " + event.getContactsString(),
-					Toast.LENGTH_LONG).show();
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-
-			}
-		
-			Toast.makeText(getBaseContext(), "Contact Return (1): " + returnE,
-					Toast.LENGTH_LONG).show();
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-
-			}
-			
-			//EventManager.addEvent(event);
-			
-			//db.updateEvent(event);
-
-			//Event eventT = EventManager.getEvent(event.getName());
-			Event eventT = db.getEvent(event.getID());
-			Toast.makeText(getBaseContext(), "Contact String (2): " + eventT.getContactsString(),
-					Toast.LENGTH_LONG).show();
+			db.updateEvent(event);
+//			//String returnE = db.updateEvent(event.getName());
+//			//*********
+//			Toast.makeText(getBaseContext(), "Contact String (1): " + event.getContactsString(),
+//					Toast.LENGTH_LONG).show();
+//			try {
+//				Thread.sleep(100);
+//			} catch (Exception e) {
+//
+//			}
+//		
+//			//Toast.makeText(getBaseContext(), "Contact Return (1): " + returnE,
+//			//		Toast.LENGTH_LONG).show();
+//			
+//			try {
+//				Thread.sleep(100);
+//			} catch (Exception e) {
+//
+//			}
+//			
+//			//EventManager.addEvent(event);
+//			
+//			//db.updateEvent(event);
+//
+//			//Event eventT = EventManager.getEvent(event.getName());
+//			Event eventT = db.getEvent(event.getID());
+//			Toast.makeText(getBaseContext(), "Contact String (2): " + eventT.getContactsString(),
+//					Toast.LENGTH_LONG).show();
 			
 		}
 
@@ -375,10 +380,6 @@ public class EventInfo extends Activity {
 		EditText eventTravelTime = (EditText) findViewById(R.id.travel_time_guess);
 		
 		
-		
-		// Get a Calendar instance.
-		//Calendar cal = Calendar.getInstance();
-		
 		// Parse the fields for the date and time from the Event.
 		String[] monthInfo = event.getDate().split("/");
 		String[] timeInfo = event.getTime().split(":");
@@ -400,13 +401,13 @@ public class EventInfo extends Activity {
 		tTime = tTime + 24*60*60*1000*(day - new Date().getDate());
 		
 		
-		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-
-		}
+//		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//
+//		}
 				
 		
 		// If the user has NOT explicitly entered a guess for the travel time of this event...
@@ -416,7 +417,6 @@ public class EventInfo extends Activity {
 			/* USE DATABASE TO GET PREVIOUS TRAVEL TIMES */
 			TravelTimeDbHelper db = new TravelTimeDbHelper(this);
 			ArrayList<TravelTime> travelTimes = db.getAllTravelTime(eventStartAddress.getText().toString(), eventAddress.getText().toString());
-//			float totalTime = 0;
 			if (travelTimes.size() != 0) {
 				for (int i = 0; i < travelTimes.size(); ++i) {
 					totalTime = totalTime + travelTimes.get(i).getTravelTime();
@@ -424,8 +424,8 @@ public class EventInfo extends Activity {
 				totalTime = totalTime / travelTimes.size();
 			}
 			
-			Toast.makeText(getBaseContext(), Float.toString(totalTime),
-					Toast.LENGTH_LONG).show();
+//			Toast.makeText(getBaseContext(), Float.toString(totalTime),
+//					Toast.LENGTH_LONG).show();
 			
 			/* SET ALARM BASED ON THOSE */
 			
@@ -434,13 +434,13 @@ public class EventInfo extends Activity {
 			//tTime -= (int) totalTime*1000;
 			//tTime -= (long) totalTime;
 			
-			Toast.makeText(getBaseContext(), "Total time: " + (int) totalTime,
-					Toast.LENGTH_LONG).show();
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-
-			}
+//			Toast.makeText(getBaseContext(), "Total time: " + (int) totalTime,
+//					Toast.LENGTH_LONG).show();
+//			try {
+//				Thread.sleep(500);
+//			} catch (Exception e) {
+//
+//			}
 			
 			
 		} else { // If the user HAS explicitly entered a travel time for this event...
@@ -451,40 +451,40 @@ public class EventInfo extends Activity {
 			totalTime = 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
 		}
 		
-		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
+//		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//
+//		}
+//				
+//		Toast.makeText(getBaseContext(), "Time Until Event: " + Integer.toString(tTime),
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//
+//		}
+//		
+//		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//
+//		}
+//		
+//		Toast.makeText(getBaseContext(), "Travel Time: " + Float.toString(totalTime),
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//
+//		}
 
-		}
-				
-		Toast.makeText(getBaseContext(), "Time Until Event: " + Integer.toString(tTime),
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-
-		}
 		
-		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-
-		}
-		
-		Toast.makeText(getBaseContext(), "Travel Time: " + Float.toString(totalTime),
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-
-		}
-
-		
-		// Get another Calendar instance.
+		// Get a Calendar instance.
 		Calendar calCalc = Calendar.getInstance();
 		//calCalc.setTime(new Date());
 		//calCalc.set(Calendar.DAY_OF_YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, Calendar.HOUR_OF_DAY, Calendar.MINUTE);
@@ -497,16 +497,15 @@ public class EventInfo extends Activity {
 //
 //		}
 		
-		Toast.makeText(getBaseContext(), "Time Until Alarm: " + Float.toString(tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())),
-				Toast.LENGTH_LONG).show();
-		try {
-			Thread.sleep(2000);
-		} catch (Exception e) {
-
-		}
+//		Toast.makeText(getBaseContext(), "Time Until Alarm: " + Float.toString(tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())),
+//				Toast.LENGTH_LONG).show();
+//		try {
+//			Thread.sleep(2000);
+//		} catch (Exception e) {
+//
+//		}
 
 		
-		//calCalc.add(Calendar.MILLISECOND, (int) totalTime);
 		calCalc.add(Calendar.MILLISECOND, (int) (tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())));
 
 		

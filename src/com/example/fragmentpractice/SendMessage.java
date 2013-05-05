@@ -23,7 +23,6 @@ public class SendMessage extends ListActivity{
 		
 	    setContentView(R.layout.activity_send_message);
 	    
-	    //texts.add("This is a test text from my CSC 380 application");
 	    texts.add("I am going to be late");
 	    texts.add("I will no longer be attending");
 	    
@@ -48,7 +47,6 @@ public class SendMessage extends ListActivity{
 					ArrayList<Contact> contacts = event.getContacts();
 					if(contacts != null) {
 						for(int i = 0; i < contacts.size(); ++i) {
-							//Toast.makeText(getApplicationContext(), contacts.get(i).getName(), Toast.LENGTH_LONG).show();
 							try {
 							Thread.sleep(1000);
 							} catch (Exception e) {
