@@ -74,6 +74,10 @@
             android:name="com.example.fragmentpractice.SendMessage"
             android:label="@string/title_activity_send_message" >
         </activity>
+       	<activity
+            android:name="com.example.fragmentpractice.QuickTextsManager"
+            android:label="@string/title_activity_quick_texts" >
+        </activity>
         
         
         

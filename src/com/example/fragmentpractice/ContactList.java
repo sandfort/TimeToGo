@@ -75,7 +75,9 @@ public class ContactList extends ListActivity {
 								.getContact(((TextView) view).getText()
 										.toString()));
 						EventDbHelper dbEvent = new EventDbHelper(ContactList.this);
-						dbEvent.updateEvent(event);
+						//dbEvent.updateEvent(event);
+						dbEvent.deleteEvent(event);
+						dbEvent.addEvent(event);
 						dbEvent.close();
 						Intent intent = new Intent(ContactList.this,
 								EventInfo.class);
@@ -107,7 +109,6 @@ public class ContactList extends ListActivity {
 			Intent intent = new Intent(this, ContactInfo.class);
 			intent.putExtra("Action", "Create");
 			startActivity(intent);
-			// return true;
 		} else if (choice == R.id.clear_contacts_database) {
 			ContactDbHelper db = new ContactDbHelper(this);
 			this.deleteDatabase(db.getName());

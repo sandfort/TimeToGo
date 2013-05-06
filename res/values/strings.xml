@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FragmentPractice</string>
+    <string name="app_name">Time To Go</string>
     <string name="hello_world">Hello world!</string>
     <string name="event_manager_button">Event Manager</string>
     <string name="event_manager">This is the Event Manager</string>
@@ -31,6 +31,7 @@
     <string name="title_activity_event_info">EventInfo</string>
     <string name="title_activity_address_info">AddressInfo</string>
     <string name="title_activity_contact_info">ContactInfo</string>
+    <string name="title_activity_quick_texts">QuickTextsManager</string>
     <string name="save_events_button">Save Events</string>
     <string name="stop_alarm_button">Stop Alarm</string>
     <string name="create_alarm_button">Create Alarm</string>

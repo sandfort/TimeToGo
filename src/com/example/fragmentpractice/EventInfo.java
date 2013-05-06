@@ -304,7 +304,9 @@ public class EventInfo extends Activity {
 		if (action.equalsIgnoreCase("Create")) {
 			db.addEvent(event);
 		} else {
-			db.updateEvent(event);
+			db.deleteEvent(event);
+			db.addEvent(event);
+			//db.updateEvent(event);
 //			//String returnE = db.updateEvent(event.getName());
 //			//*********
 //			Toast.makeText(getBaseContext(), "Contact String (1): " + event.getContactsString(),
