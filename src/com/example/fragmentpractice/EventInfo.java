@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EventInfo extends Activity {
 
@@ -400,17 +401,7 @@ public class EventInfo extends Activity {
 		int tTime = 60*1000*(new Date(year, month, day, hour, minute).getMinutes()
 				- new Date().getMinutes());
 		
-		tTime = tTime + 24*60*60*1000*(day - new Date().getDate());
-		
-		
-//		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (Exception e) {
-//
-//		}
-				
+		tTime = tTime + 24*60*60*1000*(day - new Date().getDate());		
 		
 		// If the user has NOT explicitly entered a guess for the travel time of this event...
 		float totalTime = 0;
@@ -426,86 +417,16 @@ public class EventInfo extends Activity {
 				totalTime = totalTime / travelTimes.size();
 			}
 			
-//			Toast.makeText(getBaseContext(), Float.toString(totalTime),
-//					Toast.LENGTH_LONG).show();
-			
-			/* SET ALARM BASED ON THOSE */
-			
-			// Roll back the Calendar time by the travel time.
-			// NOTE: assuming totalTime is in seconds, therefore converting to milliseconds.
-			//tTime -= (int) totalTime*1000;
-			//tTime -= (long) totalTime;
-			
-//			Toast.makeText(getBaseContext(), "Total time: " + (int) totalTime,
-//					Toast.LENGTH_LONG).show();
-//			try {
-//				Thread.sleep(500);
-//			} catch (Exception e) {
-//
-//			}
-			
-			
+
 		} else { // If the user HAS explicitly entered a travel time for this event...
 			/* SET ALARM BASED ON THIS TRAVEL TIME */
-			
-			// NOTE: Assuming time is given in minutes.
-			//tTime -= 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
+
 			totalTime = 1000*60*Integer.parseInt(eventTravelTime.getText().toString());
 		}
-		
-//		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (Exception e) {
-//
-//		}
-//				
-//		Toast.makeText(getBaseContext(), "Time Until Event: " + Integer.toString(tTime),
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (Exception e) {
-//
-//		}
-//		
-//		Toast.makeText(getBaseContext(), "Event Time: " + month + "/" + day + "/" + year + ". " + hour + ":" + minute,
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (Exception e) {
-//
-//		}
-//		
-//		Toast.makeText(getBaseContext(), "Travel Time: " + Float.toString(totalTime),
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (Exception e) {
-//
-//		}
-
-		
+				
 		// Get a Calendar instance.
 		Calendar calCalc = Calendar.getInstance();
-		//calCalc.setTime(new Date());
-		//calCalc.set(Calendar.DAY_OF_YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, Calendar.HOUR_OF_DAY, Calendar.MINUTE);
-		
-//		Toast.makeText(getBaseContext(), "Now Time: " + Float.toString(calCalc.getTimeInMillis()),
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(2000);
-//		} catch (Exception e) {
-//
-//		}
-		
-//		Toast.makeText(getBaseContext(), "Time Until Alarm: " + Float.toString(tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())),
-//				Toast.LENGTH_LONG).show();
-//		try {
-//			Thread.sleep(2000);
-//		} catch (Exception e) {
-//
-//		}
+
 
 		
 		calCalc.add(Calendar.MILLISECOND, (int) (tTime-totalTime-(60*1000*UserPrefs.getAlarmVal())));
@@ -518,7 +439,9 @@ public class EventInfo extends Activity {
 		// Schedule the alarm.
 		AlarmManager am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
 		am.set(AlarmManager.RTC_WAKEUP, calCalc.getTimeInMillis(), pendingIntent);
-		
+		Toast.makeText(getBaseContext(), "Alarm Set", Toast.LENGTH_LONG).show();
+		Intent intent = new Intent(this, EventManager.class);
+		startActivity(intent);
 	}
 
 	@Override
