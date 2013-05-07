@@ -1,9 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
  
     <item
-        android:id="@+id/create_text_button"
+        android:id="@+id/create_quick_text_button"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/create_text_button"/>
+        android:title="@string/create_quick_text_button"/>
+    
+    <item
+        android:id="@+id/clear_quick_texts_database"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/clear_quick_texts_database"/>
  
 </menu>

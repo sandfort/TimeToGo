@@ -57,25 +57,6 @@ public class EventInfo extends Activity {
 			eventAddressEdit.setText(eventEndAddress);
 			eventContactsEdit.setText(eventContacts);
 			
-//			try {
-//				Thread.sleep(1000);
-//			} catch (Exception e) {
-//
-//			}
-//			
-//			ArrayList<Contact> contacts = event.getContacts();
-//			
-//			for(int i = 0; i < contacts.size(); ++i) {
-//				Toast.makeText(getBaseContext(), 
-//						//contacts.get(i).toString(),
-//						Integer.toString(i),
-//						Toast.LENGTH_LONG).show();
-//				try {
-//					Thread.sleep(500);
-//				} catch (Exception e) {
-//
-//				}
-//			}
 			
 		}
 
@@ -100,15 +81,6 @@ public class EventInfo extends Activity {
 			EditText eventAddress = (EditText) findViewById(R.id.event_address);
 			EditText eventContacts = (EditText) findViewById(R.id.event_contacts);
 
-			// Toast.makeText(getBaseContext(),
-			// Boolean.toString(eventContacts.getText().toString().equalsIgnoreCase("")),
-			// Toast.LENGTH_LONG).show();
-			// try {
-			// Thread.sleep(1000);
-			// } catch (Exception e) {
-
-			// }
-
 			ArrayList<Contact> contacts = null;
 			if (!eventContacts.getText().toString().equalsIgnoreCase("")
 					&& !eventContacts.getText().toString().equalsIgnoreCase("none")) {
@@ -119,53 +91,21 @@ public class EventInfo extends Activity {
 					contacts.add(ContactList.getContact(contactStrings[i]));
 				}
 			}
-			// if(eventContacts != null) {
-			// contacts = new ArrayList<Contact>();
-			// String[] contactStrings =
-			// eventContacts.getText().toString().split(";");
-			// Toast.makeText(getBaseContext(),
-			// Integer.toString(contactStrings.length),
-			// Toast.LENGTH_LONG).show();
-			// try {
-			// Thread.sleep(1000);
-			// } catch (Exception e) {
-			//
-			// }
-			//
-			// for(int i = 0; i < contactStrings.length; ++i) {
-			// contacts.add(ContactList.getContact(contactStrings[i]));
-			// }
-			// }
 
 			// make a database connection
-			//***********************************************
 			EventDbHelper db = new EventDbHelper(this);
 			Event event = new Event(eventName.getText().toString(), eventNotes
 					.getText().toString(), eventTime.getText().toString(),
 					eventDate.getText().toString(),
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
-					//contacts);
 					ContactList.getContacts(eventContacts.getText().toString()));
-			
-			
-//			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
-//					Toast.LENGTH_LONG).show();
-//			try {
-//				Thread.sleep(100);
-//			} catch (Exception e) {
-//
-//			}
-			
+						
 			
 			db.addEvent(event);
 			db.close();
 			this.eventName = event.getName();
 			EventManager.getEvents().add(event);
-
-			// Intent intentMan = new Intent(this, EventManager.class);
-			// intentMan.putExtra("event", event.getName());
-			// startActivity(intentMan);
 
 		}
 		intent.putExtra("EditOrSelect", "select");
@@ -203,27 +143,15 @@ public class EventInfo extends Activity {
 					eventDate.getText().toString(),
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
-					//contacts);
 					ContactList.getContacts(eventContacts.getText().toString()));
 			
 			
-//			Toast.makeText(getBaseContext(), Integer.toString(event.getID()),
-//					Toast.LENGTH_LONG).show();
-//			try {
-//				Thread.sleep(100);
-//			} catch (Exception e) {
-//
-//			}
 			
 			
 			db.addEvent(event);
 			db.close();
 			this.eventName = event.getName();
 			EventManager.getEvents().add(event);
-
-			// Intent intentMan = new Intent(this, EventManager.class);
-			// intentMan.putExtra("event", event.getName());
-			// startActivity(intentMan);
 
 		}
 		intent.putExtra("EditOrSelect", "select");
@@ -260,15 +188,6 @@ public class EventInfo extends Activity {
 			for (int i = 0; i < contactStrings.length; ++i) {
 				contacts.add(ContactList.getContact(contactStrings[i]));
 				
-//				//*********
-//				Toast.makeText(getBaseContext(), "Contact Name (" + i + "): " + contacts.get(i).getName(),
-//						Toast.LENGTH_LONG).show();
-//				try {
-//					Thread.sleep(100);
-//				} catch (Exception e) {
-//
-//				}
-//				//*********
 			}
 		} else {
 			
@@ -289,7 +208,6 @@ public class EventInfo extends Activity {
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()), 
 					contacts);
-					//ContactList.getContacts(eventContacts.getText().toString()));
 		} else {
 			event = new Event(eventName.getText().toString(),
 					eventNotes.getText().toString(),
@@ -298,7 +216,6 @@ public class EventInfo extends Activity {
 					AddressBook.getAddress(eventStartAddress.getText().toString()),
 					AddressBook.getAddress(eventAddress.getText().toString()),
 					contacts);
-					//ContactList.getContacts(eventContacts.getText().toString()));
 		}
 
 		// add address to database
@@ -307,34 +224,7 @@ public class EventInfo extends Activity {
 		} else {
 			db.deleteEvent(event);
 			db.addEvent(event);
-			//db.updateEvent(event);
-//			//String returnE = db.updateEvent(event.getName());
-//			//*********
-//			Toast.makeText(getBaseContext(), "Contact String (1): " + event.getContactsString(),
-//					Toast.LENGTH_LONG).show();
-//			try {
-//				Thread.sleep(100);
-//			} catch (Exception e) {
-//
-//			}
-//		
-//			//Toast.makeText(getBaseContext(), "Contact Return (1): " + returnE,
-//			//		Toast.LENGTH_LONG).show();
-//			
-//			try {
-//				Thread.sleep(100);
-//			} catch (Exception e) {
-//
-//			}
-//			
-//			//EventManager.addEvent(event);
-//			
-//			//db.updateEvent(event);
-//
-//			//Event eventT = EventManager.getEvent(event.getName());
-//			Event eventT = db.getEvent(event.getID());
-//			Toast.makeText(getBaseContext(), "Contact String (2): " + eventT.getContactsString(),
-//					Toast.LENGTH_LONG).show();
+
 			
 		}
 

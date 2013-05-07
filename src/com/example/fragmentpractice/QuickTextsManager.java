@@ -2,63 +2,61 @@ package com.example.fragmentpractice;
 
 import java.util.ArrayList;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ListActivity;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class QuickTextsManager extends ListActivity {
 
-	private ArrayList<String> texts = new ArrayList<String>();
-	private ListView listview;
-	private AdapterView.OnItemClickListener clicklistener;
+	protected static final Class<?> QuickTextInfo = null;
+	private static ArrayList<QuickText> quickTexts = new ArrayList<QuickText>();
+	private static QuickTextsManager quickTextsManager = new QuickTextsManager();
+	public static int nextQuickTextID = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quick_texts_manager);
-		texts.add("Sample Text");
-		if (texts == null) {
+		
+		QuickTextsDbHelper db = new QuickTextsDbHelper(this);
+		quickTexts = db.getAllQuickTexts();
+		db.close();
+		
+		if (quickTexts == null) {
 			String[] textsStrings = new String[] { "No Texts" };
 			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout,
 					textsStrings));
 		} else {
-			String[] textsStrings = new String[texts.size()];
-			for (int i = 0; i < texts.size(); ++i) {
-				textsStrings[i] = texts.get(i);
+			String[] textsStrings = new String[quickTexts.size()];
+			for (int i = 0; i < quickTexts.size(); ++i) {
+				textsStrings[i] = quickTexts.get(i).getQuickText();
+			
 			}
 			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_layout,
 					textsStrings));
-			listview = (ListView) findViewById(android.R.id.list);
-			// adapter = new ArrayAdapter<String>(this, R.layout.list_layout,
-			// textsStrings);
-			clicklistener = new AdapterView.OnItemClickListener() {
-
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					String item = (String) parent.getItemAtPosition(position);
-					int index = -1;
-					for (int i = 0; i < texts.size(); i++) {
-						if (item.equals(texts.get(i))) {
-							index = i;
-							break;
-						}
-					}
-					texts.remove(index);
-					onCreateDialog();
+			
+			ListView quickTextsManager = (ListView) findViewById(android.R.id.list);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					R.layout.list_layout, textsStrings);
+			quickTextsManager.setAdapter(adapter);
+			quickTextsManager.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+					Intent intent = new Intent(QuickTextsManager.this,
+							QuickTextInfo.class);
+					intent.putExtra("Action", ((TextView) view).getText()
+							.toString());
+					startActivity(intent);
 				}
-			};
-			listview.setOnItemClickListener(clicklistener);
+			});
 		}
 	}
 
@@ -70,35 +68,61 @@ public class QuickTextsManager extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		onCreateDialog();
+
+		int choice = item.getItemId();
+		
+		if (choice == R.id.create_quick_text_button) {
+			Intent intent = new Intent(this, QuickTextInfo.class);
+			intent.putExtra("Action","Create");
+			startActivity(intent);
+		} else if (choice == R.id.clear_quick_texts_database) {
+			QuickTextsDbHelper db = new QuickTextsDbHelper(this);
+			this.deleteDatabase(db.getName());
+			quickTexts = db.getAllQuickTexts();
+			this.resetNextQuickTextID();
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+		}
 		return true;
 	}
 
-	private Dialog onCreateDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setCancelable(true);
-		builder.setTitle("New Quick Text");
-		final EditText input = new EditText(this);
-		builder.setView(input);
-		builder.setPositiveButton("Create",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int id) {
-						Editable newText = input.getText();
-						texts.add(newText.toString());
-						Toast.makeText(getApplicationContext(), newText,
-								Toast.LENGTH_SHORT).show();
-					}
-				});
-		builder.setNegativeButton("Cancel",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int id) {
+	public static ArrayList<QuickText> getQuickTexts() {
+		return quickTexts;
+	}
 
-					}
-				});
-		AlertDialog dialog = builder.create();
-		dialog.show();
+	public static QuickTextsManager getQuickTextsManager() {
+		return quickTextsManager;
+	}
+
+	public void removeQuickText(QuickText quickText) {
+		quickTexts.remove(quickText);
+	}
+
+	public static QuickText getQuickText(String quickTextString) {
+		for (int i = 0; i < quickTexts.size(); ++i) {
+			if (quickTexts.get(i).getQuickText().equalsIgnoreCase(quickTextString)) {
+				return quickTexts.get(i);
+			}
+		}
 		return null;
+	}
+
+	public void addQuickText(QuickText quickText) {
+		quickTexts.add(quickText);
+	}
+
+	@Override
+	public void onBackPressed() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		return;
+	}
+
+	public static int getNextQuickTextID() {
+		return nextQuickTextID++;
+	}
+
+	public void resetNextQuickTextID() {
+		nextQuickTextID = 1;
 	}
 }

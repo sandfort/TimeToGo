@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuickTextInfo" >
+
+    <EditText
+        android:id="@+id/quick_text_string"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_quick_text" 
+        android:inputType="textCapWords">
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="createQuickText"
+        android:text="@string/create_button" />
+
+</LinearLayout>
+    

@@ -59,5 +59,9 @@
     <string name="enter_guess_time">Enter Travel Time (First Time Only)</string>
     <string name="title_activity_send_message">SendMessage</string>
     <string name="delete_button">Remove</string>
+    <string name="title_activity_quick_text_info">QuickTextInfo</string>
+    <string name="enter_quick_text">Enter Quick Text</string>
+	<string name="create_quick_text_button">Create</string>
+    <string name="clear_quick_texts_database">Clear Quick Text Database</string>
 
 </resources>
